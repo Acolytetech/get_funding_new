@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Rocket, Search, Menu, X } from 'lucide-react';
+import { Rocket, Search, Menu, X, User, LogOut, LayoutDashboard } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { AuthModal } from './AuthModal';
+import { useAuth } from '../contexts/AuthContext';
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const location = useLocation();
+  const { user, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -20,6 +23,7 @@ export const Navbar = () => {
   // Close mobile menu on route change
   useEffect(() => {
     setIsMenuOpen(false);
+    setIsProfileOpen(false);
   }, [location]);
 
   const openAuth = (mode: 'login' | 'signup') => {
@@ -29,11 +33,9 @@ export const Navbar = () => {
   };
 
   const navItems = [
-    { name: 'Browse Schemes', href: '/dashboard' },
-    { name: 'How it Works', href: '/how-it-works' },
-    { name: 'Success Stories', href: '/success-stories' },
+    { name: 'How it works', href: '/how-it-works' },
     { name: 'Pricing', href: '/pricing' },
-    { name: 'About', href: '/about-us' }
+    { name: 'Proof', href: '/success-stories' }
   ];
 
   return (
@@ -41,10 +43,10 @@ export const Navbar = () => {
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || location.pathname !== '/' ? 'bg-white/90 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-emerald-600 rounded-lg flex items-center justify-center text-white">
-              <Rocket size={24} />
+            <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-white font-bold text-xl">
+              G
             </div>
-            <span className={`text-2xl font-bold tracking-tight text-slate-900`}>
+            <span className={`text-xl font-bold tracking-tight text-slate-900`}>
               GetFunding
             </span>
           </Link>
@@ -55,29 +57,74 @@ export const Navbar = () => {
               <Link 
                 key={item.name} 
                 to={item.href} 
-                className={`text-sm font-medium transition-colors ${location.pathname === item.href ? 'text-emerald-600' : 'text-slate-600 hover:text-emerald-600'}`}
+                className={`text-sm font-medium transition-colors ${location.pathname === item.href ? 'text-blue-600' : 'text-slate-600 hover:text-blue-600'}`}
               >
                 {item.name}
               </Link>
             ))}
-            <button className="text-slate-400 hover:text-emerald-600 transition-colors">
-              <Search size={20} />
-            </button>
           </div>
 
           <div className="hidden md:flex items-center gap-4">
-            <button 
-              onClick={() => openAuth('login')}
-              className="text-sm font-medium text-slate-700 hover:text-emerald-600 px-4 py-2 transition-colors"
-            >
-              Login
-            </button>
-            <button 
-              onClick={() => openAuth('signup')}
-              className="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-6 py-2.5 rounded-full transition-all shadow-md hover:shadow-lg"
-            >
-              Start a Campaign
-            </button>
+            {user ? (
+              <div className="relative">
+                <button 
+                  onClick={() => setIsProfileOpen(!isProfileOpen)}
+                  className="flex items-center gap-2 p-1 pr-3 rounded-full bg-slate-100 hover:bg-slate-200 transition-all"
+                >
+                  <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white overflow-hidden">
+                    {user.photoURL ? (
+                      <img src={user.photoURL} alt={user.displayName || 'User'} className="w-full h-full object-cover" />
+                    ) : (
+                      <User size={18} />
+                    )}
+                  </div>
+                  <span className="text-sm font-semibold text-slate-700 max-w-[100px] truncate">
+                    {user.displayName || user.email?.split('@')[0]}
+                  </span>
+                </button>
+
+                <AnimatePresence>
+                  {isProfileOpen && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      className="absolute top-full right-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden py-2"
+                    >
+                      <Link 
+                        to="/dashboard"
+                        className="flex items-center gap-3 px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 transition-colors"
+                      >
+                        <LayoutDashboard size={18} className="text-slate-400" />
+                        Dashboard
+                      </Link>
+                      <button 
+                        onClick={() => logout()}
+                        className="w-full flex items-center gap-3 px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                      >
+                        <LogOut size={18} className="text-red-400" />
+                        Logout
+                      </button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ) : (
+              <>
+                <button 
+                  onClick={() => openAuth('login')}
+                  className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors"
+                >
+                  Login
+                </button>
+                <button 
+                  onClick={() => openAuth('signup')}
+                  className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-6 py-2 rounded-xl transition-all shadow-md hover:shadow-lg"
+                >
+                  Get Started
+                </button>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -100,24 +147,43 @@ export const Navbar = () => {
                   <Link 
                     key={item.name} 
                     to={item.href} 
-                    className={`text-lg font-medium py-2 border-b border-slate-50 ${location.pathname === item.href ? 'text-emerald-600' : 'text-slate-800'}`}
+                    className={`text-lg font-medium py-2 border-b border-slate-50 ${location.pathname === item.href ? 'text-blue-600' : 'text-slate-800'}`}
                   >
                     {item.name}
                   </Link>
                 ))}
                 <div className="flex flex-col gap-3 pt-4">
-                  <button 
-                    onClick={() => openAuth('login')}
-                    className="w-full text-center py-3 font-medium text-slate-700 border border-slate-200 rounded-xl"
-                  >
-                    Login
-                  </button>
-                  <button 
-                    onClick={() => openAuth('signup')}
-                    className="w-full bg-emerald-600 text-white text-center py-3 font-semibold rounded-xl shadow-md"
-                  >
-                    Start a Campaign
-                  </button>
+                  {user ? (
+                    <>
+                      <Link 
+                        to="/dashboard"
+                        className="w-full bg-blue-600 text-white text-center py-3 font-semibold rounded-xl shadow-md"
+                      >
+                        Dashboard
+                      </Link>
+                      <button 
+                        onClick={() => logout()}
+                        className="w-full text-center py-3 font-medium text-red-600 border border-red-100 rounded-xl bg-red-50"
+                      >
+                        Logout
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <button 
+                        onClick={() => openAuth('login')}
+                        className="w-full text-center py-3 font-medium text-slate-700 border border-slate-200 rounded-xl"
+                      >
+                        Login
+                      </button>
+                      <button 
+                        onClick={() => openAuth('signup')}
+                        className="w-full bg-blue-600 text-white text-center py-3 font-semibold rounded-xl shadow-md"
+                      >
+                        Start a Campaign
+                      </button>
+                    </>
+                  )}
                 </div>
               </div>
             </motion.div>

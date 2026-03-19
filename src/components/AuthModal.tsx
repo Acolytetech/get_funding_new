@@ -1,11 +1,52 @@
 import React, { useState } from 'react';
-import { X, Facebook, Linkedin, Mail } from 'lucide-react';
+import { X, Mail, Github, Lock, User as UserIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useAuth } from '../contexts/AuthContext';
 
 export const AuthModal = ({ isOpen, onClose, initialMode = 'login' }: { isOpen: boolean, onClose: () => void, initialMode?: 'login' | 'signup' }) => {
   const [mode, setMode] = useState<'login' | 'signup'>(initialMode);
+  const { loginWithGoogle, loginWithGithub, signupWithEmail, loginWithEmail } = useAuth();
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  // Form states
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
 
   if (!isOpen) return null;
+
+  const handleSocialLogin = async (loginFn: () => Promise<void>) => {
+    try {
+      setLoading(true);
+      setError(null);
+      await loginFn();
+      onClose();
+    } catch (err: any) {
+      setError(err.message || 'An error occurred during login');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      setError(null);
+      if (mode === 'signup') {
+        if (!name) throw new Error('Name is required');
+        await signupWithEmail(email, password, name);
+      } else {
+        await loginWithEmail(email, password);
+      }
+      onClose();
+    } catch (err: any) {
+      setError(err.message || 'An error occurred');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <AnimatePresence>
@@ -40,18 +81,28 @@ export const AuthModal = ({ isOpen, onClose, initialMode = 'login' }: { isOpen: 
               </p>
             </div>
 
+            {error && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-100 text-red-600 text-sm rounded-xl">
+                {error}
+              </div>
+            )}
+
             <div className="space-y-4">
-              <button className="w-full flex items-center justify-center gap-3 py-3 px-4 border border-slate-200 rounded-xl font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+              <button 
+                onClick={() => handleSocialLogin(loginWithGoogle)}
+                disabled={loading}
+                className="w-full flex items-center justify-center gap-3 py-3 px-4 border border-slate-200 rounded-xl font-semibold text-slate-700 hover:bg-slate-50 transition-all disabled:opacity-50"
+              >
                 <img src="https://www.google.com/favicon.ico" alt="Google" className="w-5 h-5" />
                 Continue with Google
               </button>
-              <button className="w-full flex items-center justify-center gap-3 py-3 px-4 bg-[#1877F2] text-white rounded-xl font-semibold hover:bg-[#166fe5] transition-all">
-                <Facebook size={20} fill="white" />
-                Continue with Facebook
-              </button>
-              <button className="w-full flex items-center justify-center gap-3 py-3 px-4 bg-[#0077B5] text-white rounded-xl font-semibold hover:bg-[#00669c] transition-all">
-                <Linkedin size={20} fill="white" />
-                Continue with LinkedIn
+              <button 
+                onClick={() => handleSocialLogin(loginWithGithub)}
+                disabled={loading}
+                className="w-full flex items-center justify-center gap-3 py-3 px-4 bg-slate-900 text-white rounded-xl font-semibold hover:bg-slate-800 transition-all disabled:opacity-50"
+              >
+                <Github size={20} fill="white" />
+                Continue with GitHub
               </button>
             </div>
 
@@ -64,20 +115,57 @@ export const AuthModal = ({ isOpen, onClose, initialMode = 'login' }: { isOpen: 
               </div>
             </div>
 
-            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-4" onSubmit={handleSubmit}>
+              {mode === 'signup' && (
+                <div>
+                  <label className="block text-sm font-bold text-slate-700 mb-2">Full Name</label>
+                  <div className="relative">
+                    <UserIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                    <input 
+                      type="text" 
+                      required
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="John Doe"
+                      className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                    />
+                  </div>
+                </div>
+              )}
               <div>
                 <label className="block text-sm font-bold text-slate-700 mb-2">Email Address</label>
                 <div className="relative">
                   <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                   <input 
                     type="email" 
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="name@example.com"
-                    className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
+                    className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
                   />
                 </div>
               </div>
-              <button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-4 rounded-xl font-bold text-lg shadow-lg shadow-emerald-600/20 transition-all">
-                {mode === 'login' ? 'Login' : 'Sign Up'}
+              <div>
+                <label className="block text-sm font-bold text-slate-700 mb-2">Password</label>
+                <div className="relative">
+                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                  <input 
+                    type="password" 
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="••••••••"
+                    className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                  />
+                </div>
+              </div>
+              <button 
+                type="submit"
+                disabled={loading}
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-bold text-lg shadow-lg shadow-blue-600/20 transition-all disabled:opacity-50"
+              >
+                {loading ? 'Processing...' : (mode === 'login' ? 'Login' : 'Sign Up')}
               </button>
             </form>
 
@@ -85,7 +173,7 @@ export const AuthModal = ({ isOpen, onClose, initialMode = 'login' }: { isOpen: 
               {mode === 'login' ? "Don't have an account?" : "Already have an account?"}{' '}
               <button 
                 onClick={() => setMode(mode === 'login' ? 'signup' : 'login')}
-                className="text-emerald-600 font-bold hover:underline"
+                className="text-blue-600 font-bold hover:underline"
               >
                 {mode === 'login' ? 'Sign Up' : 'Login'}
               </button>
