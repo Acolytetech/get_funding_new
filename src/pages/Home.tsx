@@ -159,7 +159,7 @@ const PainfulResearch = () => {
   return (
   <section
  className="relative overflow-hidden bg-purple-500 font-[Cormorant_Garamond]
-             pt-24 pb-16
+             pt-14 pb-16
              sm:pt-28 sm:pb-20
              md:pt-32 md:pb-24
              lg:pt-40 lg:pb-32"
@@ -282,7 +282,7 @@ const PainfulResearch = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="lg:col-span-2 min-h-[40vh] bg-slate-900 rounded-3xl p-8 text-white relative overflow-hidden"
+            className="lg:col-span-2 min-h-[50vh] bg-slate-900 rounded-3xl p-8 text-white relative overflow-hidden"
           >
             <h4 className="text-xl font-bold mb-2">The Reality Gap</h4>
             <p className="text-xs text-slate-400 mb-8">Where founders lose time vs where they win.</p>
@@ -334,7 +334,7 @@ const PainfulResearch = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 1 }}
-              className="absolute bottom-8 left-8 right-8"
+              className="absolute bottom-4 md:bottom-8 left-8 right-8"
             >
               <div className="bg-blue-600 py-3 rounded-xl text-center font-bold text-sm">
                 98% FASTER DISCOVERY
