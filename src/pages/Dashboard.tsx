@@ -17,128 +17,14 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { SCHEMES_DATA, Scheme } from '../data/schemes';
+import { INCUBATORS_DATA } from '../data/incubators';
 
 type Tab = 'home' | 'schemes' | 'incubators' | 'pricing' | 'angels' | 'vcs';
-
-
-
-const INCUBATORS_DATA = [
-  {
-    id: "iitgn-rp",
-    title: "IIT GANDHINAGAR RESEARCH PARK",
-    tag: "INCUBATOR",
-    about: "The IIT Gandhinagar Research Park fosters assiduity- academia collaboration by connecting diligence with IITGN faculty, experimenters, and scholars. It provides access to state- of- the- art laboratories and research facilities.",
-    location: "Ahmedabad, Gujarat",
-    foundingYear: "2017",
-    logo: "IITGNRP",
-    programType: "Incubator",
-    instType: "IIT"
-  },
-  {
-    id: "iitkgp-abif",
-    title: "AGRI BUSINESS INCUBATION FOUNDATION - IIT KHARAGPUR",
-    tag: "INCUBATOR",
-    about: "The Agricultural and Food Engineering (AgFE) Department of the IIT Kharagpur, the only department of its kind in the country's IIT system, is hosting the NABARD-funded Agri Business Incubation Foundation.",
-    location: "Kharagpur, West Bengal",
-    foundingYear: "2021",
-    logo: "IITKGP",
-    programType: "Incubator",
-    instType: "IIT"
-  },
-  {
-    id: "thub-hyd",
-    title: "T-HUB HYDERABAD",
-    tag: "INCUBATOR",
-    about: "T-Hub is India's leading innovation hub and ecosystem enabler. Based out of Hyderabad, it has supported over 2000 startups and provided them with access to mentors, investors, and corporate partners.",
-    location: "Hyderabad, Telangana",
-    foundingYear: "2015",
-    logo: "THUB",
-    programType: "Both",
-    instType: "Independent/Non-academic"
-  },
-  {
-    id: "nsrcel-iimb",
-    title: "NSRCEL - IIM BANGALORE",
-    tag: "INCUBATOR",
-    about: "NSRCEL is the startup hub at IIM Bangalore. It brings together entrepreneurs, academicians, and industry experts to create an impact on the startup ecosystem through various incubation programs.",
-    location: "Bangalore, Karnataka",
-    foundingYear: "2000",
-    logo: "IIMB",
-    programType: "Incubator",
-    instType: "IIM/Business School"
-  },
-  {
-    id: "ciie-iima",
-    title: "CIIE.CO - IIM AHMEDABAD",
-    tag: "INCUBATOR",
-    about: "CIIE.CO is the Innovation and Entrepreneurship Centre at IIM Ahmedabad. It helps entrepreneurs through its continuum of incubation, acceleration, and seed-funding.",
-    location: "Ahmedabad, Gujarat",
-    foundingYear: "2002",
-    logo: "IIMA",
-    programType: "Both",
-    instType: "IIM/Business School"
-  },
-  {
-    id: "sine-iitb",
-    title: "SINE - IIT BOMBAY",
-    tag: "INCUBATOR",
-    about: "Society for Innovation and Entrepreneurship (SINE) is the umbrella organization at IIT Bombay for fostering entrepreneurship and nurturing tech-based startups.",
-    location: "Mumbai, Maharashtra",
-    foundingYear: "2004",
-    logo: "IITB",
-    programType: "Incubator",
-    instType: "IIT"
-  },
-  {
-    id: "villgro",
-    title: "VILLGRO",
-    tag: "INCUBATOR",
-    about: "Villgro is one of India's oldest and foremost social enterprise incubators. They support innovative social startups that have a clear social impact.",
-    location: "Chennai, Tamil Nadu",
-    foundingYear: "2001",
-    logo: "VILLGRO",
-    programType: "Incubator",
-    instType: "Independent/Non-academic"
-  },
-  {
-    id: "aic-iiith",
-    title: "AIC-IIIT HYDERABAD",
-    tag: "INCUBATOR",
-    about: "Atal Incubation Centre at IIIT Hyderabad focuses on supporting tech startups in areas like AI, ML, and data science.",
-    location: "Hyderabad, Telangana",
-    foundingYear: "2018",
-    logo: "IIITH",
-    programType: "Incubator",
-    instType: "Engineering College"
-  },
-  {
-    id: "vjti-tbi",
-    title: "VJTI TECHNOLOGY BUSINESS INCUBATOR",
-    tag: "INCUBATOR",
-    about: "The VJTI TBI focuses on supporting startups in the field of engineering and technology, particularly in areas like IoT, robotics, and smart systems.",
-    location: "Mumbai, Maharashtra",
-    foundingYear: "2016",
-    logo: "VJTITBI",
-    programType: "Incubator",
-    instType: "Engineering College"
-  },
-  {
-    id: "iitd-tbiu",
-    title: "TBIU - IIT DELHI",
-    tag: "INCUBATOR",
-    about: "Technology Business Incubation Unit at IIT Delhi provides support to startups in various technology domains, leveraging the research expertise of the institute.",
-    location: "New Delhi, Delhi",
-    foundingYear: "2000",
-    logo: "IITDTBIU",
-    programType: "Incubator",
-    instType: "IIT"
-  }
-];
 
 export const Dashboard = () => {
 
   const [activeTab, setActiveTab] = useState<Tab>('home');
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [myListTab, setMyListTab] = useState<'schemes' | 'incubators'>('schemes');
   const [schemeSearch, setSchemeSearch] = useState('');
   const [incubatorSearch, setIncubatorSearch] = useState('');
@@ -640,70 +526,131 @@ export const Dashboard = () => {
     switch (activeTab) {
       case 'home':
         return (
-          <div className="p-8 max-w-5xl mx-auto relative z-10">
-            <div className="flex justify-between items-start mb-12">
-              <div>
-                <h1 className={`text-4xl font-bold mb-2 ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>Welcome, User!</h1>
-                <p className="opacity-50 text-lg">Jump back in, or start something new.</p>
-              </div>
-              <button className={`flex items-center gap-2 border px-6 py-2.5 rounded-xl font-semibold transition-all shadow-sm ${theme === 'light' ? 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50' : 'bg-white/10 border-white/10 text-white hover:bg-white/20'}`}>
-                <LogIn size={20} className="text-blue-400" />
-                Login
-              </button>
-            </div>
+         <div className="p-4 sm:p-6 lg:p-8 max-w-5xl mx-auto relative z-10">
 
-            <div className={`border-t pt-12 ${theme === 'light' ? 'border-slate-100' : 'border-white/10'}`}>
-              <div className="flex items-center justify-between mb-8">
-                <div className="flex items-center gap-3">
-                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-blue-400 ${theme === 'light' ? 'bg-blue-50' : 'bg-blue-500/20'}`}>
-                    <Plus size={20} />
-                  </div>
-                  <h2 className={`text-2xl font-bold ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>My List</h2>
-                </div>
-                <div className={`p-1 rounded-xl flex ${theme === 'light' ? 'bg-slate-100' : 'bg-white/10'}`}>
-                  <button 
-                    onClick={() => setMyListTab('schemes')}
-                    className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${myListTab === 'schemes' ? (theme === 'light' ? 'bg-white text-slate-900 shadow-sm' : 'bg-white/20 text-white shadow-sm') : 'opacity-50 hover:opacity-100'}`}
-                  >
-                    Gov schemes
-                  </button>
-                  <button 
-                    onClick={() => setMyListTab('incubators')}
-                    className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${myListTab === 'incubators' ? (theme === 'light' ? 'bg-white text-slate-900 shadow-sm' : 'bg-white/20 text-white shadow-sm') : 'opacity-50 hover:opacity-100'}`}
-                  >
-                    Incubators
-                  </button>
-                </div>
-              </div>
+  {/* HEADER */}
+  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-8 sm:mb-12">
+    
+    <div>
+      <h1 className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>
+        Welcome, User!
+      </h1>
+      <p className="opacity-50 text-sm sm:text-base">
+        Jump back in, or start something new.
+      </p>
+    </div>
+
+    <button className={`
+      flex items-center justify-center gap-2 
+      w-full sm:w-auto
+      border px-5 py-2.5 rounded-xl font-semibold transition-all shadow-sm
+      ${theme === 'light' 
+        ? 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50' 
+        : 'bg-white/10 border-white/10 text-white hover:bg-white/20'}
+    `}>
+      <LogIn size={18} className="text-blue-400" />
+      Login
+    </button>
+
+  </div>
+
+  {/* MY LIST SECTION */}
+  <div className={`border-t pt-8 sm:pt-12 ${theme === 'light' ? 'border-slate-100' : 'border-white/10'}`}>
+
+    {/* TOP BAR */}
+    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 sm:mb-8">
+      
+      <div className="flex items-center gap-3">
+        <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-blue-400 ${theme === 'light' ? 'bg-blue-50' : 'bg-blue-500/20'}`}>
+          <Plus size={18} />
+        </div>
+        <h2 className={`text-xl sm:text-2xl font-bold ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>
+          My List
+        </h2>
+      </div>
+
+      {/* TABS */}
+      <div className={`flex w-full sm:w-auto p-1 rounded-xl ${theme === 'light' ? 'bg-slate-100' : 'bg-white/10'}`}>
+        
+        <button 
+          onClick={() => setMyListTab('schemes')}
+          className={`
+            flex-1 sm:flex-none text-center px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all
+            ${myListTab === 'schemes' 
+              ? (theme === 'light' ? 'bg-white text-slate-900 shadow-sm' : 'bg-white/20 text-white') 
+              : 'opacity-50 hover:opacity-100'}
+          `}
+        >
+          Gov Schemes
+        </button>
+
+        <button 
+          onClick={() => setMyListTab('incubators')}
+          className={`
+            flex-1 sm:flex-none text-center px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all
+            ${myListTab === 'incubators' 
+              ? (theme === 'light' ? 'bg-white text-slate-900 shadow-sm' : 'bg-white/20 text-white') 
+              : 'opacity-50 hover:opacity-100'}
+          `}
+        >
+          Incubators
+        </button>
+
+      </div>
+
+    </div>
+    
+    {/* CONTENT */}
+    <div className={`border border-dashed rounded-2xl sm:rounded-3xl p-6 sm:p-10 text-center transition-all ${styles.card}`}>
+      
+      {myList.filter(i => i.type === (myListTab === 'schemes' ? 'scheme' : 'incubator')).length > 0 ? (
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-left">
+          
+          {myList
+            .filter(i => i.type === (myListTab === 'schemes' ? 'scheme' : 'incubator'))
+            .map((item) => (
               
-              <div className={`border border-dashed rounded-3xl p-12 text-center transition-all duration-300 ${styles.card}`}>
-                {myList.filter(i => i.type === (myListTab === 'schemes' ? 'scheme' : 'incubator')).length > 0 ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
-                    {myList
-                      .filter(i => i.type === (myListTab === 'schemes' ? 'scheme' : 'incubator'))
-                      .map((item) => (
-                        <div key={item.id} className={`border p-4 rounded-2xl flex justify-between items-center shadow-sm transition-all ${theme === 'light' ? 'bg-white border-slate-100' : 'bg-white/5 border-white/10'}`}>
-                          <div>
-                            <p className={`font-bold ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>{item.title}</p>
-                            <p className="text-xs opacity-50 uppercase tracking-widest">{item.type}</p>
-                          </div>
-                          <button 
-                            onClick={() => toggleMyList(item)}
-                            className="opacity-40 hover:opacity-100 hover:text-red-500 transition-all"
-                          >
-                            <X size={18} />
-                          </button>
-                        </div>
-                      ))}
-                  </div>
-                ) : (
-                  <p className="opacity-50">
-                    Your list is empty. <button onClick={() => setActiveTab(myListTab === 'schemes' ? 'schemes' : 'incubators')} className="text-blue-400 hover:underline">Explore {myListTab}</button>
+              <div 
+                key={item.id} 
+                className={`border p-4 rounded-xl sm:rounded-2xl flex justify-between items-center shadow-sm transition-all ${theme === 'light' ? 'bg-white border-slate-100' : 'bg-white/5 border-white/10'}`}
+              >
+                <div className="pr-2">
+                  <p className={`font-semibold text-sm sm:text-base ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>
+                    {item.title}
                   </p>
-                )}
+                  <p className="text-[10px] opacity-50 uppercase tracking-widest">
+                    {item.type}
+                  </p>
+                </div>
+
+                <button 
+                  onClick={() => toggleMyList(item)}
+                  className="opacity-40 hover:opacity-100 hover:text-red-500 transition-all"
+                >
+                  <X size={16} />
+                </button>
               </div>
-            </div>
-          </div>
+
+            ))}
+        </div>
+
+      ) : (
+        
+        <p className="opacity-50 text-sm sm:text-base">
+          Your list is empty.{" "}
+          <button 
+            onClick={() => setActiveTab(myListTab === 'schemes' ? 'schemes' : 'incubators')} 
+            className="text-blue-400 hover:underline font-medium"
+          >
+            Explore {myListTab}
+          </button>
+        </p>
+
+      )}
+    </div>
+  </div>
+</div>
         );
 
       case 'schemes':
@@ -717,7 +664,7 @@ export const Dashboard = () => {
             <div className="px-8 pt-8">
               <div className={`relative rounded-3xl p-12 overflow-hidden min-h-[320px] flex items-center transition-all duration-500 ${theme === 'light' ? 'bg-[#1a2b4b]' : 'bg-white/5 backdrop-blur-xl border border-white/10'}`}>
                 <div className="relative z-10 max-w-2xl">
-                  <h1 className="text-5xl font-bold text-white mb-6 leading-tight">
+                  <h1 className="text-2xl md:text-5xl font-bold text-white mb-6 leading-tight">
                     All Verified Government Schemes in One Place
                   </h1>
                   <p className="text-white/70 text-lg mb-8 max-w-lg">
@@ -733,15 +680,15 @@ export const Dashboard = () => {
                 </div>
                 
                 {/* Carousel Navigation */}
-                <button className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white hover:bg-white/20 transition-all">
+                {/* <button className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white hover:bg-white/20 transition-all">
                   <span className="text-xl">‹</span>
                 </button>
                 <button className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white hover:bg-white/20 transition-all">
                   <span className="text-xl">›</span>
-                </button>
+                </button> */}
 
                 {/* Placeholder Image on Right */}
-                <div className="absolute right-12 top-1/2 -translate-y-1/2 w-72 h-72 bg-white/5 rounded-3xl border border-white/10 flex items-center justify-center">
+                <div className="md:absolute hidden right-12 top-1/2 -translate-y-1/2 w-72 h-72 bg-white/5 rounded-3xl border border-white/10 flex items-center justify-center">
                   <div className="text-center">
                     <Users2 size={80} className="text-white/20 mx-auto mb-4" />
                     <p className="text-white/20 text-xs font-bold uppercase tracking-widest">Verified Data</p>
@@ -751,7 +698,7 @@ export const Dashboard = () => {
             </div>
 
             {/* Results Header & Search */}
-            <div className="px-8 py-8">
+            <div className="px-8 py-8 ">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
                 <h2 className={`text-xl font-medium ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>
                   Showing <span className="font-bold">{
@@ -794,10 +741,10 @@ export const Dashboard = () => {
               </div>
 
               {/* Main Content Area */}
-              <div className="flex gap-8">
+              <div className="flex flex-col md:flex-row gap-8">
                 {/* Filter Sidebar */}
-                <aside className="w-72 flex-shrink-0">
-                  <div className={`rounded-3xl p-6 mb-6 sticky top-24 transition-all duration-500 max-h-[calc(100vh-120px)] overflow-y-auto custom-scrollbar ${theme === 'light' ? 'bg-slate-100' : 'bg-white/5 backdrop-blur-xl border border-white/10'}`}>
+                <aside className="w-full  md:w-72 flex-shrink-0">
+                  <div className={`rounded-3xl p-6 mb-6 sticky top-6 transition-all duration-500 max-h-[30vh] md:max-h-[calc(84vh)] overflow-y-auto custom-scrollbar ${theme === 'light' ? 'bg-slate-100' : 'bg-white/5 backdrop-blur-xl border border-white/10'}`}>
                       <div className="flex justify-between items-center mb-6">
                         <h3 className={`text-xl font-bold ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>Premium Filters</h3>
                         <button 
@@ -1212,7 +1159,7 @@ export const Dashboard = () => {
                     
                     return matchesSearch && matchesType && matchesFocus && matchesCert && matchesIndustry && matchesStage && matchesFundType && matchesReservation && matchesState;
                   }).map((scheme, idx) => (
-                    <div key={scheme.id || idx} className={`border rounded-3xl p-8 shadow-sm hover:shadow-md transition-all flex gap-8 ${styles.card}`}>
+                    <div key={scheme.id || idx} className={` border rounded-3xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col md:flex-row gap-8 ${styles.card}`}>
 
                       {/* Left: Logo & Title */}
                       <div className="w-48 flex-shrink-0">
@@ -1233,7 +1180,7 @@ export const Dashboard = () => {
                       </div>
 
                       {/* Middle: About */}
-                      <div className={`flex-1 border-l pl-8 ${theme === 'light' ? 'border-slate-100' : 'border-white/10'}`}>
+                      <div className={`flex-1 border-l md:pl-8 ${theme === 'light' ? 'border-slate-100' : 'border-white/10'}`}>
                         <p className="text-[10px] font-bold opacity-40 uppercase tracking-widest mb-4">About the Scheme</p>
                         <p className={`text-sm leading-relaxed mb-4 ${theme === 'light' ? 'text-slate-600' : 'text-white/70'}`}>
                           {scheme.about}
@@ -1247,7 +1194,7 @@ export const Dashboard = () => {
                       </div>
 
                       {/* Right: Details & Actions */}
-                      <div className={`w-64 flex-shrink-0 border-l pl-8 flex flex-col justify-between ${theme === 'light' ? 'border-slate-100' : 'border-white/10'}`}>
+                      <div className={`w-full md:w-100 flex-shrink-0 border-l md:pl-8 grid grid-cols-2 justify-between  ${theme === 'light' ? 'border-slate-100' : 'border-white/10'}`}>
                         <div className="space-y-4">
                           <div>
                             <p className="text-[10px] font-bold opacity-40 uppercase tracking-widest mb-1">Fund Type</p>
@@ -1268,21 +1215,21 @@ export const Dashboard = () => {
                             onClick={() => toggleMyList({ id: scheme.id, title: scheme.title, type: 'scheme' })}
                             className={`w-full py-2.5 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 ${
                               myList.find(i => i.id === scheme.id)
-                                ? 'bg-slate-900 text-white'
-                                : 'bg-[#e67e22] text-white hover:bg-[#d35400]'
+                                ? 'bg-purple-950/60 text-white'
+                                : 'bg-[#4e11b1] text-white hover:bg-[#4e11b1]/80'
                             }`}
                           >
                             <Plus size={16} /> {myList.find(i => i.id === scheme.id) ? 'Remove' : 'My list'}
                           </button>
                           <button 
                             onClick={() => setSelectedSchemeId(scheme.id)}
-                            className={`w-full py-2.5 rounded-xl font-bold text-sm transition-all ${theme === 'light' ? 'bg-blue-50 text-blue-700 hover:bg-blue-100' : 'bg-blue-500/20 text-blue-400 hover:bg-blue-500/30'}`}
+                            className={`w-full py-2.5 rounded-xl font-bold text-sm transition-all ${theme === 'light' ? 'bg-green-700 text-white hover:bg-green-700/80' : 'bg-green-500/20 text-blue-400 hover:bg-green-500/30'}`}
                           >
                             Application Details
                           </button>
                           <button 
                             onClick={() => handleContactClick(scheme.title, 'Government Scheme')}
-                            className={`w-full py-2.5 rounded-xl font-bold text-sm transition-all ${theme === 'light' ? 'bg-pink-50 text-pink-600 hover:bg-pink-100' : 'bg-pink-500/20 text-pink-400 hover:bg-pink-500/30'}`}
+                            className={`w-full py-2.5 rounded-xl font-bold text-sm transition-all ${theme === 'light' ? 'bg-blue-500 text-white hover:bg-blue-500/80' : 'bg-blue-500/20 text-blue-400 hover:bg-pink-500/30'}`}
                           >
                             Contact details
                           </button>
@@ -1315,15 +1262,15 @@ export const Dashboard = () => {
                 </div>
                 
                 {/* Carousel Navigation */}
-                <button className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white hover:bg-white/20 transition-all">
+                {/* <button className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white hover:bg-white/20 transition-all">
                   <span className="text-xl">‹</span>
                 </button>
                 <button className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white hover:bg-white/20 transition-all">
                   <span className="text-xl">›</span>
-                </button>
+                </button> */}
 
                 {/* Placeholder Image on Right */}
-                <div className="absolute right-12 top-1/2 -translate-y-1/2 w-72 h-72 bg-white/5 rounded-3xl border border-white/10 flex items-center justify-center">
+                <div className="hidden md:absolute right-12 top-1/2 -translate-y-1/2 w-72 h-72 bg-white/5 rounded-3xl border border-white/10 flex items-center justify-center">
                   <div className="text-center">
                     <Users2 size={80} className="text-white/20 mx-auto mb-4" />
                     <p className="text-white/20 text-xs font-bold uppercase tracking-widest">Verified Incubators</p>
@@ -1336,7 +1283,7 @@ export const Dashboard = () => {
             <div className="px-8 py-8">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
                 <h2 className={`text-xl font-medium ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>
-                  Showing <span className="font-bold">1396</span> Results for <span className={`italic font-bold ${theme === 'light' ? 'text-blue-600' : 'text-blue-400'}`}>"Incubators"</span>
+                  Showing <span className="font-bold">{INCUBATORS_DATA.length}</span> Results for <span className={`italic font-bold ${theme === 'light' ? 'text-blue-600' : 'text-blue-400'}`}>"Incubators"</span>
                 </h2>
                 <div className="flex items-center gap-4">
                   <div className="relative">
@@ -1361,10 +1308,10 @@ export const Dashboard = () => {
               </div>
 
               {/* Main Content Area */}
-              <div className="flex gap-8">
+              <div className="flex gap-8 flex flex-col md:flex-row ">
                 {/* Filter Sidebar */}
-                <aside className="w-64 flex-shrink-0">
-                  <div className={`rounded-3xl p-6 mb-6 sticky top-24 transition-all duration-500 max-h-[calc(100vh-120px)] overflow-y-auto custom-scrollbar ${theme === 'light' ? 'bg-slate-100' : 'bg-white/5 backdrop-blur-xl border border-white/10'}`}>
+                <aside className="w-full md:w-72 flex-shrink-0">
+                  <div className={`rounded-3xl p-6 mb-6 sticky top-6 transition-all duration-500 max-h-[30vh] md:max-h-[calc(84vh)] overflow-y-auto custom-scrollbar ${theme === 'light' ? 'bg-slate-100' : 'bg-white/5 backdrop-blur-xl border border-white/10'}`}>
                     <div className="flex justify-between items-center mb-6">
                       <h3 className={`text-xl font-bold leading-tight ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>Premium Filters</h3>
                       <button 
@@ -1519,7 +1466,7 @@ export const Dashboard = () => {
                     const matchesInst = selectedInstitutionType.length === 0 || selectedInstitutionType.includes(i.instType || '');
                     return matchesSearch && matchesLocation && matchesProgram && matchesInst;
                   }).map((incubator, idx) => (
-                    <div key={idx} className={`border rounded-3xl p-8 shadow-sm hover:shadow-md transition-all flex gap-8 ${styles.card}`}>
+                    <div key={idx} className={`border rounded-3xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col md:flex-row gap-8 ${styles.card}`}>
                       {/* Left: Logo & Title */}
                       <div className="w-48 flex-shrink-0">
                         <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-4 border overflow-hidden ${theme === 'light' ? 'bg-slate-50 border-slate-100' : 'bg-white/5 border-white/10'}`}>
@@ -1537,7 +1484,7 @@ export const Dashboard = () => {
                       </div>
 
                       {/* Middle: About */}
-                      <div className={`flex-1 border-l pl-8 ${theme === 'light' ? 'border-slate-100' : 'border-white/10'}`}>
+                      <div className={`flex-1 border-l md:pl-8 ${theme === 'light' ? 'border-slate-100' : 'border-white/10'}`}>
                         <p className="text-[10px] font-bold opacity-40 uppercase tracking-widest mb-4">About</p>
                         <p className={`text-sm leading-relaxed mb-4 ${theme === 'light' ? 'text-slate-600' : 'text-white/70'}`}>
                           {incubator.about} <button className="text-blue-400 font-bold hover:underline">See More</button>
@@ -1545,7 +1492,7 @@ export const Dashboard = () => {
                       </div>
 
                       {/* Right: Details & Actions */}
-                      <div className={`w-64 flex-shrink-0 border-l pl-8 flex flex-col justify-between ${theme === 'light' ? 'border-slate-100' : 'border-white/10'}`}>
+                      <div className={`w-full md:w-100 flex-shrink-0 border-l pl-8 flex flex-row items-center justify-between ${theme === 'light' ? 'border-slate-100' : 'border-white/10'}`}>
                         <div className="space-y-4">
                           <div>
                             <p className="text-[10px] font-bold opacity-40 uppercase tracking-widest mb-1">Location</p>
@@ -1562,21 +1509,21 @@ export const Dashboard = () => {
                             onClick={() => toggleMyList({ id: incubator.id, title: incubator.title, type: 'incubator' })}
                             className={`w-full py-2.5 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 ${
                               myList.find(i => i.id === incubator.id)
-                                ? 'bg-slate-900 text-white'
-                                : 'bg-[#e67e22] text-white hover:bg-[#d35400]'
+                                ? 'bg-purple-950/60 text-white'
+                                : 'bg-[#4e11b1] text-white hover:bg-[#4e11b1]/80'
                             }`}
                           >
                             <Plus size={16} /> {myList.find(i => i.id === incubator.id) ? 'Remove' : 'My list'}
                           </button>
                           <button 
                             onClick={() => setSelectedIncubatorId(incubator.id)}
-                            className={`w-full py-2.5 rounded-xl font-bold text-sm transition-all ${theme === 'light' ? 'bg-blue-50 text-blue-700 hover:bg-blue-100' : 'bg-blue-500/20 text-blue-400 hover:bg-blue-500/30'}`}
+                             className={`w-full py-2.5 rounded-xl font-bold text-sm transition-all ${theme === 'light' ? 'bg-green-700 text-white hover:bg-green-700/80' : 'bg-green-500/20 text-blue-400 hover:bg-green-500/30'}`}
                           >
                             Application Details
                           </button>
                           <button 
                             onClick={() => handleContactClick(incubator.title, 'Incubator')}
-                            className={`w-full py-2.5 rounded-xl font-bold text-sm transition-all ${theme === 'light' ? 'bg-pink-50 text-pink-600 hover:bg-pink-100' : 'bg-pink-500/20 text-pink-400 hover:bg-pink-500/30'}`}
+                            className={`w-full py-2.5 rounded-xl font-bold text-sm transition-all ${theme === 'light' ? 'bg-blue-500 text-white hover:bg-blue-500/80' : 'bg-blue-500/20 text-blue-400 hover:bg-pink-500/30'}`}
                           >
                             Contact details
                           </button>
@@ -1677,113 +1624,140 @@ export const Dashboard = () => {
       )}
 
       {/* Sidebar */}
-      <motion.aside 
-        initial={false}
-        animate={{ width: isSidebarOpen ? 280 : 0, opacity: isSidebarOpen ? 1 : 0 }}
-        className={`border-r flex flex-col z-30 transition-all duration-500 ${styles.sidebar}`}
+{isSidebarOpen && (
+  <div
+    onClick={() => setIsSidebarOpen(false)}
+    className="fixed inset-0 bg-black/40 backdrop-blur-sm z-30 lg:hidden"
+  />
+)}
+   <motion.aside
+  initial={false}
+  animate={{
+    x: window.innerWidth >= 1024 ? 0 : (isSidebarOpen ? 0 : "-100%")
+  }}
+  transition={{ type: "tween", duration: 0.3 }}
+  className={`
+    fixed top-0 left-0 h-full w-[280px]
+    lg:static lg:translate-x-0
+    z-40
+    border-r flex flex-col
+    ${styles.sidebar}
+  `}
+>
+  <div className="p-6 flex items-center justify-between">
+    <Link
+      to="/"
+      className={`text-2xl font-bold ${
+        theme === "light" ? "text-slate-900" : "text-white"
+      }`}
+    >
+      StartupFlora
+    </Link>
+
+    {/* Right Icons */}
+    <div
+      className={`flex items-center gap-1 p-1 rounded-lg ${
+        theme === "light" ? "bg-slate-100" : "bg-white/10"
+      }`}
+    >
+      <button
+        onClick={cycleTheme}
+        className={`p-1.5 rounded-md ${
+          theme === "light"
+            ? "text-slate-600 hover:bg-white"
+            : "text-white hover:bg-white/10"
+        }`}
       >
-        <div className="p-6 flex items-center justify-between">
-          <Link to="/" className={`text-2xl font-bold ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>GetFunding</Link>
-          <div className={`flex items-center gap-1 p-1 rounded-lg ${theme === 'light' ? 'bg-slate-100' : 'bg-white/10'}`}>
-            <button 
-              onClick={cycleTheme}
-              title="Change Theme"
-              className={`p-1.5 rounded-md transition-all ${theme === 'light' ? 'text-slate-600 hover:bg-white shadow-sm' : 'text-white hover:bg-white/10'}`}
-            >
-              {theme === 'light' ? <Sun size={16} /> : <Moon size={16} />}
-            </button>
-            <button 
-              onClick={toggleFullScreen}
-              title="Full Screen"
-              className={`p-1.5 rounded-md transition-all ${theme === 'light' ? 'text-slate-600 hover:bg-white shadow-sm' : 'text-white hover:bg-white/10'}`}
-            >
-              <Monitor size={16} />
-            </button>
-          </div>
-        </div>
+        {theme === "light" ? <Sun size={16} /> : <Moon size={16} />}
+      </button>
 
-        <nav className="flex-1 px-4 py-4 space-y-1 overflow-y-auto relative z-10">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => setActiveTab(item.id as Tab)}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all ${
-                activeTab === item.id 
-                  ? styles.navActive
-                  : styles.navHover
-              }`}
-            >
-              <item.icon size={20} />
-              {item.label}
-            </button>
-          ))}
+      <button
+        onClick={toggleFullScreen}
+        className={`p-1.5 rounded-md ${
+          theme === "light"
+            ? "text-slate-600 hover:bg-white"
+            : "text-white hover:bg-white/10"
+        }`}
+      >
+        <Monitor size={16} />
+      </button>
 
-          <div className="pt-8 pb-2 px-4">
-            <p className={`text-[10px] font-bold uppercase tracking-widest opacity-50`}>Upcoming</p>
-          </div>
+      {/* ❌ CLOSE BUTTON ONLY MOBILE */}
+      <button
+        onClick={() => setIsSidebarOpen(false)}
+        className="lg:hidden p-2 rounded-lg hover:bg-black/10 dark:hover:bg-white/10"
+      >
+        <X size={18} />
+      </button>
+    </div>
+  </div>
 
-          {upcomingItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => setActiveTab(item.id as Tab)}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all ${
-                activeTab === item.id 
-                  ? styles.navActive
-                  : styles.navHover
-              }`}
-            >
-              <item.icon size={20} />
-              {item.label}
-            </button>
-          ))}
-        </nav>
+  {/* NAV */}
+  <nav className="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
+    {navItems.map((item) => (
+      <button
+        key={item.id}
+        onClick={() => {
+          setActiveTab(item.id as Tab);
+          setIsSidebarOpen(false);
+        }}
+        className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium ${
+          activeTab === item.id ? styles.navActive : styles.navHover
+        }`}
+      >
+        <item.icon size={20} />
+        {item.label}
+      </button>
+    ))}
 
-        <div className="p-6 space-y-3 relative z-10">
-          <button className={`w-full py-3 rounded-xl font-bold transition-all ${styles.button}`}>
-            Sign In
-          </button>
-          <button className={`w-full bg-transparent border py-3 rounded-xl font-bold transition-all ${theme === 'light' ? 'border-slate-200 text-slate-900 hover:bg-slate-50' : 'border-white/20 text-white hover:bg-white/10'}`}>
-            Sign Up
-          </button>
-        </div>
-      </motion.aside>
+    <div className="pt-6 px-4">
+      <p className="text-[10px] opacity-50 font-bold uppercase">
+        Upcoming
+      </p>
+    </div>
+
+    {upcomingItems.map((item) => (
+      <button
+        key={item.id}
+        onClick={() => setActiveTab(item.id as Tab)}
+        className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium ${
+          activeTab === item.id ? styles.navActive : styles.navHover
+        }`}
+      >
+        <item.icon size={20} />
+        {item.label}
+      </button>
+    ))}
+  </nav>
+</motion.aside>
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col relative overflow-hidden">
         {/* Top Bar */}
-        <header className={`h-20 border-b flex items-center justify-between px-8 z-20 transition-all duration-500 ${styles.header}`}>
-          <div className="flex items-center gap-4">
-            {!isSidebarOpen && (
-              <button 
-                onClick={() => setIsSidebarOpen(true)}
-                className={`p-2 rounded-xl transition-all ${theme === 'light' ? 'bg-slate-100 text-slate-600 hover:bg-slate-200' : 'bg-white/10 text-white hover:bg-white/20'}`}
-              >
-                <Menu size={20} />
-              </button>
-            )}
-            <div className="flex items-center gap-2">
-              <span className="opacity-40 text-sm font-medium">Dashboard</span>
-              <span className="opacity-20">/</span>
-              <span className="font-bold text-sm capitalize">{activeTab}</span>
-            </div>
-          </div>
-          
-          <div className="flex items-center gap-6">
-            <div className="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20">
-              <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
-              <span className="text-xs font-bold uppercase tracking-wider">Live Updates</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-white shadow-lg bg-slate-900`}>
-                U
-              </div>
-              <div className="hidden sm:block text-left">
-                <p className={`text-sm font-bold leading-none mb-1 ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>User Name</p>
-                <p className="text-[10px] opacity-40 font-bold uppercase tracking-widest">Premium Member</p>
-              </div>
-            </div>
-          </div>
-        </header>
+  <header
+  className={`h-20 border-b flex items-center justify-between px-6 ${styles.header}`}
+>
+  <div className="flex items-center gap-4">
+    
+    {/* ✅ MOBILE TOGGLE BUTTON */}
+    <button
+      onClick={() => setIsSidebarOpen(true)}
+      className={`lg:hidden p-2 rounded-xl ${
+        theme === "light"
+          ? "bg-slate-100 text-slate-600"
+          : "bg-white/10 text-white"
+      }`}
+    >
+      <Menu size={20} />
+    </button>
+
+    <div className="flex items-center gap-2">
+      <span className="opacity-40 text-sm">Dashboard</span>
+      <span>/</span>
+      <span className="font-bold text-sm capitalize">{activeTab}</span>
+    </div>
+  </div>
+</header>
 
         {/* Content Area */}
         <div className="flex-1 overflow-y-auto relative">

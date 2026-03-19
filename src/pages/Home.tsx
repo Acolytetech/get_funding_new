@@ -22,25 +22,35 @@ import { motion } from 'motion/react';
 
 const Hero = () => {
   return (
-    <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden bg-white">
+ <section
+  className="relative overflow-hidden bg-white font-[Cormorant_Garamond]
+             pt-24 pb-16
+             sm:pt-28 sm:pb-20
+             md:pt-32 md:pb-24
+             lg:pt-40 lg:pb-32"
+  style={{
+    background:
+      "radial-gradient(66.09% 66.09% at 50.04% 33.91%, #FFFFFF 20.67%, #DFF5F8 65.87%)",
+  }}
+>
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider mb-6 border border-blue-100">
+          <div className="inline-flex items-center gap-2 bg-green-50 text-green-600 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider mb-6 border border-blue-100">
             <div className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
             <span>Precision Engine V3.0</span>
           </div>
           <h1 className="text-5xl lg:text-7xl font-bold text-slate-900 leading-[1.1] mb-6">
-            Find The Best Government <span className="text-blue-600 italic">Schemes & Incubators</span> for Your Startup
+            Find The Best Government <span className="text-purple-600 italic">Schemes & Incubators</span> for Your Startup
           </h1>
           <p className="text-lg text-slate-500 mb-10 max-w-lg leading-relaxed">
             Our granular filtering system processes 5,000+ government schemes and investment opportunities to find exactly what you qualify for. Stop scrolling, start applying.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 items-center">
-            <Link to="/dashboard" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-xl">
+            <Link to="/dashboard" className="bg-linear-to-l from-purple-500  to-green-500 hover:shadow-blue-700 text-white px-8 py-4 rounded-full font-bold text-lg flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-xl">
               Browse Schemes
             </Link>
             <div className="flex items-center gap-3">
@@ -65,35 +75,35 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="relative"
         >
-          <div className="bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-slate-100 p-8 max-w-md ml-auto">
-            <div className="flex items-center justify-between mb-8">
-              <h3 className="text-lg font-bold text-slate-900">Premium Filters</h3>
-              <button className="text-[10px] font-bold text-orange-500 uppercase tracking-wider">Clear Filters</button>
+          <div className="bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden border border-slate-100  max-w-md ml-auto">
+            <div className="flex items-center justify-between p-4 bg-emerald-600 ">
+              <h3 className="text-lg font-bold text-slate-100">Premium Filters</h3>
+              <button className="text-[14px] font-bold text-white uppercase tracking-wider">Clear Filters</button>
             </div>
             
-            <div className="space-y-6">
+            <div className="space-y-6 p-6">
               <div>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">Scheme Type</p>
+                <p className="text-[14px] font-bold text-slate-400 uppercase tracking-widest mb-3">Scheme Type</p>
                 <div className="space-y-2">
                   <label className="flex items-center gap-3 cursor-pointer group">
-                    <div className="w-4 h-4 rounded-full border-2 border-orange-500 flex items-center justify-center p-0.5">
-                      <div className="w-full h-full rounded-full bg-orange-500" />
+                    <div className="w-4 h-4 rounded-full border-2 border-green-500 flex items-center justify-center p-0.5">
+                      <div className="w-full h-full rounded-full bg-green-500" />
                     </div>
-                    <span className="text-sm font-medium text-slate-700 group-hover:text-slate-900">Central Government</span>
+                    <span className="text-base font-semibold text-slate-700 group-hover:text-slate-900">Central Government</span>
                   </label>
                   <label className="flex items-center gap-3 cursor-pointer group">
                     <div className="w-4 h-4 rounded-full border-2 border-slate-200" />
-                    <span className="text-sm font-medium text-slate-500 group-hover:text-slate-700">State Government</span>
+                    <span className="text-base font-semibold text-slate-500 group-hover:text-slate-700">State Government</span>
                   </label>
                 </div>
               </div>
 
               <div>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">Industry</p>
+                <p className="text-[14px] font-bold text-slate-400 uppercase tracking-widest mb-3">Industry</p>
                 <div className="space-y-2">
                   <label className="flex items-center gap-3 cursor-pointer group">
-                    <div className="w-4 h-4 rounded-full border-2 border-orange-500 flex items-center justify-center p-0.5">
-                      <div className="w-full h-full rounded-full bg-orange-500" />
+                    <div className="w-4 h-4 rounded-full border-2 border-green-500 flex items-center justify-center p-0.5">
+                      <div className="w-full h-full rounded-full bg-green-500" />
                     </div>
                     <span className="text-sm font-medium text-slate-700 group-hover:text-slate-900">Biotechnology</span>
                   </label>
@@ -111,7 +121,7 @@ const Hero = () => {
               </div>
 
               <div>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">Stage</p>
+                <p className="text-[14px] font-bold text-slate-400 uppercase tracking-widest mb-3">Stage</p>
                 <div className="relative mb-3">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={14} />
                   <input 
@@ -122,8 +132,8 @@ const Hero = () => {
                 </div>
                 <div className="space-y-2">
                   <label className="flex items-center gap-3 cursor-pointer group">
-                    <div className="w-4 h-4 rounded-full border-2 border-orange-500 flex items-center justify-center p-0.5">
-                      <div className="w-full h-full rounded-full bg-orange-500" />
+                    <div className="w-4 h-4 rounded-full border-2 border-green-500 flex items-center justify-center p-0.5">
+                      <div className="w-full h-full rounded-full bg-green-500" />
                     </div>
                     <span className="text-sm font-medium text-slate-700 group-hover:text-slate-900">Idea stage to POC</span>
                   </label>
@@ -134,7 +144,7 @@ const Hero = () => {
                 </div>
               </div>
 
-              <button className="text-[10px] font-bold text-orange-500 flex items-center gap-1">
+              <button className="text-[14px] font-bold text-green-500 flex items-center gap-1">
                 Show More <ChevronRight size={12} />
               </button>
             </div>
@@ -147,7 +157,17 @@ const Hero = () => {
 
 const PainfulResearch = () => {
   return (
-    <section className="py-24 bg-white">
+  <section
+ className="relative overflow-hidden bg-purple-500 font-[Cormorant_Garamond]
+             pt-24 pb-16
+             sm:pt-28 sm:pb-20
+             md:pt-32 md:pb-24
+             lg:pt-40 lg:pb-32"
+  style={{
+    background:
+      "radial-gradient(66.09% 66.09% at 50.04% 33.91%, #FFFFFF 1.67%, #DFF5F8 45.87%)",
+  }}
+>
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -156,7 +176,7 @@ const PainfulResearch = () => {
         className="max-w-7xl mx-auto px-6 text-center mb-16"
       >
         <h2 className="text-5xl font-bold text-slate-900 mb-6">
-          Save <span className="text-blue-600">500+ Hours</span> of <br /> Painful Research
+          Save <span className="text-purple-600">500+ Hours</span> of <br /> Painful Research
         </h2>
         <p className="text-slate-500 max-w-2xl mx-auto text-sm font-medium">
           Stop losing sleep over manual spreadsheets and dead-end search results. Our precision logic surfaces high-signal opportunities in seconds.
@@ -200,34 +220,34 @@ const PainfulResearch = () => {
                     whileInView={{ scale: 1, opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.3 }}
-                    className="bg-white px-3 py-1.5 rounded-lg shadow-sm border border-slate-100 flex items-center gap-2 text-[10px] font-bold text-orange-500"
+                    className="bg-white px-3 py-1.5 rounded-lg shadow-sm border border-slate-100 flex items-center gap-2 text-[10px] font-bold text-green-500"
                   >
-                    <div className="w-2 h-2 rounded-full bg-orange-500" /> Idea Stage
+                    <div className="w-2 h-2 rounded-full bg-green-500" /> Idea Stage
                   </motion.div>
                   <motion.div 
                     initial={{ scale: 0.8, opacity: 0 }}
                     whileInView={{ scale: 1, opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.4 }}
-                    className="bg-white px-3 py-1.5 rounded-lg shadow-sm border border-slate-100 flex items-center gap-2 text-[10px] font-bold text-emerald-500"
+                    className="bg-white px-3 py-1.5 rounded-lg shadow-sm border border-slate-100 flex items-center gap-2 text-[10px] font-bold text-purple-500"
                   >
-                    <div className="w-2 h-2 rounded-full bg-emerald-500" /> Karnataka
+                    <div className="w-2 h-2 rounded-full bg-purple-500" /> Karnataka
                   </motion.div>
                 </div>
 
                 <div className="flex items-center justify-center gap-12">
                   <div className="text-center">
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Opportunities</p>
-                    <p className="text-3xl font-bold text-slate-300">5,000+</p>
+                    <p className="text-[10px] font-bold text-green-600 uppercase tracking-widest mb-1">Opportunities</p>
+                    <p className="text-3xl font-bold text-green-600">5,000+</p>
                   </div>
                   <div className="relative w-24 h-24">
-                    <div className="absolute inset-0 border-t-[40px] border-t-slate-200 border-x-[48px] border-x-transparent" />
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[8px] font-bold text-slate-400 text-center leading-tight">
+                    <div className="absolute inset-0 border-t-[40px] border-t-purple-200 border-x-[48px] border-x-transparent" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[8px] font-bold text-purple-400 text-center leading-tight">
                       IDEAL MATCH
                     </div>
                   </div>
                   <div className="text-center">
-                    <p className="text-[10px] font-bold text-orange-500 uppercase tracking-widest mb-1">Highly Relevant</p>
+                    <p className="text-[10px] font-bold text-blue-500 uppercase tracking-widest mb-1">Highly Relevant</p>
                     <motion.p 
                       initial={{ scale: 0.5, opacity: 0 }}
                       whileInView={{ scale: 1, opacity: 1 }}
@@ -271,12 +291,12 @@ const PainfulResearch = () => {
               <div className="relative">
                 <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest mb-2">Old Way</p>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-orange-500">
+                  <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-green-500">
                     <MousePointer2 size={18} />
                   </div>
                   <div className="flex-1">
                     <div className="h-1.5 bg-white/10 rounded-full w-full mb-1" />
-                    <p className="text-[8px] font-bold text-orange-500 uppercase tracking-widest">Endless Searching</p>
+                    <p className="text-[8px] font-bold text-green-500 uppercase tracking-widest">Endless Searching</p>
                   </div>
                 </div>
               </div>
@@ -289,21 +309,21 @@ const PainfulResearch = () => {
                     whileInView={{ width: "100%" }}
                     viewport={{ once: true }}
                     transition={{ duration: 1, delay: 0.2 }}
-                    className="h-3 bg-white/10 rounded-full border border-white/20" 
+                    className="h-3 bg-blue-500 rounded-full border border-white/20" 
                   />
                   <motion.div 
                     initial={{ width: 0 }}
                     whileInView={{ width: "80%" }}
                     viewport={{ once: true }}
                     transition={{ duration: 1, delay: 0.4 }}
-                    className="h-3 bg-orange-500 rounded-full" 
+                    className="h-3 bg-green-500 rounded-full" 
                   />
                   <motion.div 
                     initial={{ width: 0 }}
                     whileInView={{ width: "60%" }}
                     viewport={{ once: true }}
                     transition={{ duration: 1, delay: 0.6 }}
-                    className="h-3 bg-emerald-500 rounded-full" 
+                    className="h-3 bg-purple-500 rounded-full" 
                   />
                 </div>
               </div>
@@ -335,7 +355,7 @@ const PainfulResearch = () => {
             <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Research Hours Saved</p>
           </div>
           <div className="text-center">
-            <p className="text-5xl font-bold text-orange-500 mb-2">₹12L</p>
+            <p className="text-5xl font-bold text-green-500 mb-2">₹12L</p>
             <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Avg. Opportunity Value</p>
           </div>
           <div className="text-center">
@@ -374,7 +394,15 @@ const Results = () => {
   ];
 
   return (
-    <section className="py-24 bg-slate-50/50">
+    <section className="py-24 bg-slate-50/50 relative overflow-hidden bg-purple-500 font-[Cormorant_Garamond]
+             pt-24 pb-16
+             sm:pt-28 sm:pb-20
+             md:pt-32 md:pb-24
+             lg:pt-40 lg:pb-32"
+  style={{
+    background:
+      "radial-gradient(66.09% 66.09% at 50.04% 33.91%, #FFFFFF 1.67%, #DFF5F8 45.87%)",
+  }} >
       <div className="max-w-7xl mx-auto px-6">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -407,6 +435,7 @@ const Results = () => {
               transition={{ duration: 0.6, delay: i * 0.1 }}
               whileHover={{ y: -5 }}
               className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm grid md:grid-cols-4 gap-8 transition-shadow hover:shadow-xl"
+           
             >
               <div className="flex flex-col justify-between">
                 <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-6">
@@ -414,9 +443,9 @@ const Results = () => {
                 </div>
                 <div>
                   <h4 className="text-xl font-bold text-slate-900 mb-1">{card.title}</h4>
-                  <p className="text-[8px] font-bold text-orange-500 uppercase tracking-widest mb-4">{card.tag}</p>
+                  <p className="text-[8px] font-bold text-green-500 uppercase tracking-widest mb-4">{card.tag}</p>
                   {card.rating && (
-                    <div className="flex items-center gap-1 text-orange-400">
+                    <div className="flex items-center gap-1 text-green-400">
                       <Star size={10} fill="currentColor" />
                       <span className="text-[10px] font-bold text-slate-400">{card.rating}</span>
                     </div>
@@ -474,10 +503,10 @@ const Results = () => {
                   )}
                 </div>
                 <div className="space-y-2 mt-6">
-                  <button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-colors">
+                  <button className="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-colors">
                     <Zap size={14} /> My list
                   </button>
-                  <button className="w-full bg-slate-50 hover:bg-slate-100 text-slate-400 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest transition-colors">
+                  <button className="w-full bg-slate-50 hover:bg-slate-100 text-slate-400 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest transition-colors" onClick={()=>window.open('/dashboard',"_self")}>
                     Application Details
                   </button>
                 </div>
@@ -493,7 +522,7 @@ const Results = () => {
 
 const Proof = () => {
   return (
-    <section className="py-24 bg-white">
+    <section >
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -540,7 +569,7 @@ const Proof = () => {
                 </motion.div>
               </div>
               <div className="absolute bottom-6 left-6 right-6 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
+                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                 <p className="text-[10px] font-bold text-white uppercase tracking-widest">Successful Application Demo</p>
               </div>
             </div>
@@ -554,7 +583,18 @@ const Proof = () => {
 
 const Community = () => {
   return (
-    <section className="py-24 bg-white">
+    <section
+     className="relative overflow-hidden bg-purple-500 font-[Cormorant_Garamond]
+             pt-24 pb-16
+             sm:pt-28 sm:pb-20
+             md:pt-32 md:pb-24
+             lg:pt-40 lg:pb-32"
+  style={{
+    background:
+      "radial-gradient(66.09% 66.09% at 50.04% 33.91%, #FFFFFF 1.67%, #DFF5F8 45.87%)",
+  }}
+    
+    >
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -611,7 +651,7 @@ const Community = () => {
             whileHover={{ x: 10 }}
             className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm flex items-start gap-6 transition-all"
           >
-            <div className="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center text-orange-500">
+            <div className="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center text-green-500">
               <Zap size={24} />
             </div>
             <div>
@@ -652,7 +692,7 @@ const Community = () => {
               <Calendar size={24} />
             </div>
             <div>
-              <div className="inline-flex items-center gap-2 bg-orange-50 text-orange-500 px-2 py-0.5 rounded-full text-[8px] font-bold uppercase tracking-wider mb-1">
+              <div className="inline-flex items-center gap-2 bg-green-50 text-green-500 px-2 py-0.5 rounded-full text-[8px] font-bold uppercase tracking-wider mb-1">
                 Upcoming
               </div>
               <h4 className="text-xl font-bold text-slate-900">Angel Investors & Venture Capitalists</h4>
@@ -711,14 +751,17 @@ const CTA = () => {
 
 export const Home = () => {
   return (
-    <div className="bg-white">
-      <Hero />
-      <PainfulResearch />
-      <Results />
-      <Proof />
-      <Community />
-      <CTA />
-    </div>
+    <div
+  className="bg-white"
+
+>
+  <Hero />
+  <PainfulResearch />
+  <Results />
+  {/* <Proof /> */}
+  <Community />
+  <CTA />
+</div>
   );
 };
 

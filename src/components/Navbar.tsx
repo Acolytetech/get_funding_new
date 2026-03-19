@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Rocket, Search, Menu, X, User, LogOut, LayoutDashboard } from 'lucide-react';
+import { Rocket, Search, Menu, X, User, LogOut, LayoutDashboard, RocketIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { AuthModal } from './AuthModal';
 import { useAuth } from '../contexts/AuthContext';
@@ -40,14 +40,14 @@ export const Navbar = () => {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || location.pathname !== '/' ? 'bg-white/90 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || location.pathname !== '/' ? 'bg-white/30 bg-blend-darken backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-white font-bold text-xl">
-              G
+            <div className="w-8 h-8 rounded flex items-center justify-center text-white font-bold text-xl">
+              <img src="https://startupflora.com/_next/image?url=%2Fimg%2FcompanyLogo.png&w=64&q=75" alt="startupflora logo" />
             </div>
             <span className={`text-xl font-bold tracking-tight text-slate-900`}>
-              GetFunding
+              Startupflora
             </span>
           </Link>
 
@@ -57,7 +57,7 @@ export const Navbar = () => {
               <Link 
                 key={item.name} 
                 to={item.href} 
-                className={`text-sm font-medium transition-colors ${location.pathname === item.href ? 'text-blue-600' : 'text-slate-600 hover:text-blue-600'}`}
+                className={`text-base font-medium transition-colors ${location.pathname === item.href ? 'text-blue-600' : 'text-slate-600 hover:text-blue-600'}`}
               >
                 {item.name}
               </Link>
@@ -111,17 +111,17 @@ export const Navbar = () => {
               </div>
             ) : (
               <>
-                <button 
+                {/* <button 
                   onClick={() => openAuth('login')}
                   className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors"
                 >
                   Login
-                </button>
+                </button> */}
                 <button 
                   onClick={() => openAuth('signup')}
-                  className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-6 py-2 rounded-xl transition-all shadow-md hover:shadow-lg"
+                  className="bg-purple-600 hover:bg-purple-800 flex gap-2 items-center text-white text-base font-semibold px-6 py-2 rounded-full transition-all shadow-md hover:shadow-lg"
                 >
-                  Get Started
+                  Get Started <RocketIcon size={18}/>
                 </button>
               </>
             )}

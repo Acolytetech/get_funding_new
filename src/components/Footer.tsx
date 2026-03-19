@@ -1,25 +1,41 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Linkedin, ArrowRight } from 'lucide-react';
+import { Linkedin, ArrowRight, Instagram, Facebook } from 'lucide-react';
 
 export const Footer = () => {
   return (
-    <footer className="bg-white text-slate-500 pt-20 pb-10 border-t border-slate-100">
+    <footer className="bg-white text-slate-500 pt-20 pb-10 border-t border-slate-100 relative overflow-hidden bg-purple-500 font-[Cormorant_Garamond]
+             pt-24 pb-16
+             sm:pt-28 sm:pb-20
+             md:pt-32 md:pb-24
+             lg:pt-40 lg:pb-32"
+  style={{
+    background:
+      "radial-gradient(66.09% 66.09% at 50.04% 33.91%, #FFFFFF 1.67%, #DFF5F8 45.87%)",
+  }}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 lg:col-span-1">
-            <Link to="/" className="flex items-center gap-2 text-slate-900 mb-6">
-              <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-white font-bold text-xl">
-                G
-              </div>
-              <span className="text-xl font-bold tracking-tight">GetFunding</span>
-            </Link>
+              <Link to="/" className="flex items-center gap-2 mb-4">
+                        <div className="w-12 h-12 rounded flex items-center justify-center text-white font-bold text-xl">
+                          <img src="https://startupflora.com/_next/image?url=%2Fimg%2FcompanyLogo.png&w=64&q=75" alt="startupflora logo" />
+                        </div>
+                        <span className={`text-2xl font-bold tracking-tight text-slate-900`}>
+                          Startupflora
+                        </span>
+                      </Link>
             <p className="text-sm leading-relaxed mb-8 max-w-xs">
               Empowering entrepreneurs by simplifying access to government funding and incubator resources globally.
             </p>
             <div className="flex gap-4">
               <a href="#" className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all">
                 <Linkedin size={18} />
+              </a>
+               <a href="#" className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center hover:bg-pink-600 hover:text-white transition-all">
+                <Instagram size={18} />
+              </a>
+               <a href="#" className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all">
+                <Facebook size={18} />
               </a>
             </div>
           </div>
