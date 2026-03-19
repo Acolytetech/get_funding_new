@@ -175,7 +175,7 @@ const PainfulResearch = () => {
         transition={{ duration: 0.6 }}
         className="max-w-7xl mx-auto px-6 text-center mb-16"
       >
-        <h2 className="text-5xl font-bold text-slate-900 mb-6">
+        <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6">
           Save <span className="text-purple-600">500+ Hours</span> of <br /> Painful Research
         </h2>
         <p className="text-slate-500 max-w-2xl mx-auto text-sm font-medium">
@@ -183,7 +183,7 @@ const PainfulResearch = () => {
         </p>
       </motion.div>
 
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-5xl mx-auto px-3 md:px-6">
         <div className="grid lg:grid-cols-5 gap-8 items-stretch">
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
@@ -203,9 +203,9 @@ const PainfulResearch = () => {
               </div>
             </div>
 
-            <div className="flex items-center justify-center py-10">
+            <div className="flex items-center justify-center scale-90 py-10">
               <div className="relative">
-                <div className="flex gap-4 mb-10">
+                <div className="flex gap-4  mb-10">
                   <motion.div 
                     initial={{ scale: 0.8, opacity: 0 }}
                     whileInView={{ scale: 1, opacity: 1 }}
@@ -282,7 +282,7 @@ const PainfulResearch = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="lg:col-span-2 bg-slate-900 rounded-3xl p-8 text-white relative overflow-hidden"
+            className="lg:col-span-2 min-h-[40vh] bg-slate-900 rounded-3xl p-8 text-white relative overflow-hidden"
           >
             <h4 className="text-xl font-bold mb-2">The Reality Gap</h4>
             <p className="text-xs text-slate-400 mb-8">Where founders lose time vs where they win.</p>
@@ -348,18 +348,18 @@ const PainfulResearch = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="grid grid-cols-3 gap-8 mt-16 border-t border-slate-100 pt-12"
+          className="grid grid-cols-3 gap-4 md:gap-8 mt-16 border-t border-slate-100 pt-12"
         >
           <div className="text-center">
-            <p className="text-5xl font-bold text-blue-600 mb-2">500+</p>
+            <p className="text-3xl md:text-5xl font-bold text-blue-600 mb-2">500+</p>
             <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Research Hours Saved</p>
           </div>
           <div className="text-center">
-            <p className="text-5xl font-bold text-green-500 mb-2">₹12L</p>
+            <p className="text-3xl md:text-5xl font-bold text-green-500 mb-2">₹12L</p>
             <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Avg. Opportunity Value</p>
           </div>
           <div className="text-center">
-            <p className="text-5xl font-bold text-slate-900 mb-2">12k</p>
+            <p className="text-3xl md:text-5xl font-bold text-slate-900 mb-2">12k</p>
             <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Active Founders</p>
           </div>
         </motion.div>
@@ -408,7 +408,7 @@ const Results = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex items-center justify-between mb-12"
+          className="flex flex-col gap-4 md:flex-row md:items-center justify-between mb-12"
         >
           <div>
             <p className="text-[10px] font-bold text-blue-600 uppercase tracking-widest mb-2">The Result</p>
@@ -599,10 +599,10 @@ const Community = () => {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="max-w-7xl mx-auto px-6 text-center mb-16"
+        className="max-w-7xl mx-auto px-3 md:px-6 text-center mb-16"
       >
         <p className="text-[10px] font-bold text-blue-600 uppercase tracking-widest mb-2">Our Ecosystem</p>
-        <h2 className="text-5xl font-bold text-slate-900 mb-6">Community & Network</h2>
+        <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6">Community & Network</h2>
       </motion.div>
 
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-8">
