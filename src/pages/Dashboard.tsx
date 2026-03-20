@@ -12,7 +12,8 @@ import {
   Moon, 
   Monitor, 
   Sun,
-  X
+  X,
+  MessageSquare
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
@@ -200,7 +201,7 @@ export const Dashboard = () => {
                     </div>
                     <div>
                       <h1 className={`text-3xl font-bold ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>{scheme.title}</h1>
-                      <div className="flex gap-2 mt-2">
+                      <div className="flex flex-col md:flex-row w-fit gap-2 mt-2">
                         <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider border border-blue-500/20">
                           {scheme.tag}
                         </span>
@@ -661,8 +662,8 @@ export const Dashboard = () => {
         return (
           <div className="flex-1 flex flex-col relative z-10">
             {/* Hero Section */}
-            <div className="px-8 pt-8">
-              <div className={`relative rounded-3xl p-12 overflow-hidden min-h-[320px] flex items-center transition-all duration-500 ${theme === 'light' ? 'bg-[#1a2b4b]' : 'bg-white/5 backdrop-blur-xl border border-white/10'}`}>
+            <div className="px-4 md:px-8 pt-8">
+              <div className={`relative rounded-3xl p-6 md:p-12 overflow-hidden min-h-[320px] flex items-center transition-all duration-500 ${theme === 'light' ? 'bg-[#1a2b4b]' : 'bg-white/5 backdrop-blur-xl border border-white/10'}`}>
                 <div className="relative z-10 max-w-2xl">
                   <h1 className="text-2xl md:text-5xl font-bold text-white mb-6 leading-tight">
                     All Verified Government Schemes in One Place
@@ -698,7 +699,7 @@ export const Dashboard = () => {
             </div>
 
             {/* Results Header & Search */}
-            <div className="px-8 py-8 ">
+            <div className="px-4 md:px-8 py-8 ">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
                 <h2 className={`text-xl font-medium ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>
                   Showing <span className="font-bold">{
@@ -718,18 +719,18 @@ export const Dashboard = () => {
                     }).length
                   }</span> Schemes for <span className={`italic font-bold ${theme === 'light' ? 'text-blue-600' : 'text-blue-400'}`}>"Business Growth & Certification"</span>
                 </h2>
-                <div className="flex items-center gap-4">
-                  <div className="relative">
+                <div className="flex flex-col md:flex-row md:items-center gap-4">
+                  <div className="relative ">
                     <input 
                       type="text" 
                       placeholder="Search schemes..." 
                       value={schemeSearch}
                       onChange={(e) => setSchemeSearch(e.target.value)}
-                      className={`rounded-xl pl-10 pr-4 py-2.5 text-sm font-medium outline-none focus:ring-2 focus:ring-blue-500/20 w-64 transition-all ${theme === 'light' ? 'bg-slate-50 border border-slate-200 text-slate-700' : 'bg-white/5 border border-white/10 text-white'}`}
+                      className={`rounded-xl pl-4 pr-4 py-2.5 text-sm font-medium outline-none focus:ring-2 focus:ring-blue-500/20 w-full md:w-64 transition-all ${theme === 'light' ? 'bg-slate-50 border border-slate-200 text-slate-700' : 'bg-white/5 border border-white/10 text-white'}`}
                     />
-                    <Menu size={18} className="absolute left-3 top-1/2 -translate-y-1/2 opacity-40" />
+                    {/* <Menu size={18} className="absolute left-3 top-1/2 -translate-y-1/2 opacity-40" /> */}
                   </div>
-                  <div className="flex items-center gap-3">
+                  <div className="hidden md:flex items-center gap-3">
                     <span className={`text-sm ${theme === 'light' ? 'text-slate-700' : 'text-white/50'}`}>Sort By:</span>
                     <select className={`rounded-xl px-4 py-2.5 text-sm font-medium outline-none focus:ring-2 focus:ring-blue-500/20 transition-all ${theme === 'light' ? 'bg-slate-50 border border-slate-200 text-slate-700' : 'bg-white/5 border border-white/10 text-white'}`}>
                       <option className={theme === 'light' ? 'text-slate-900' : 'text-white bg-slate-900'}>Newest</option>
@@ -744,7 +745,7 @@ export const Dashboard = () => {
               <div className="flex flex-col md:flex-row gap-8">
                 {/* Filter Sidebar */}
                 <aside className="w-full  md:w-72 flex-shrink-0">
-                  <div className={`rounded-3xl p-6 mb-6 sticky top-6 transition-all duration-500 max-h-[30vh] md:max-h-[calc(84vh)] overflow-y-auto custom-scrollbar ${theme === 'light' ? 'bg-slate-100' : 'bg-white/5 backdrop-blur-xl border border-white/10'}`}>
+                  <div className={`rounded-3xl p-6 mb-6 sticky top-6 transition-all duration-500 max-h-[40vh] md:max-h-[calc(84vh)] overflow-y-auto custom-scrollbar ${theme === 'light' ? 'bg-slate-100' : 'bg-white/5 backdrop-blur-xl border border-white/10'}`}>
                       <div className="flex justify-between items-center mb-6">
                         <h3 className={`text-xl font-bold ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>Premium Filters</h3>
                         <button 
@@ -804,9 +805,9 @@ export const Dashboard = () => {
                             placeholder="Search industry..." 
                             value={industrySearch}
                             onChange={(e) => setIndustrySearch(e.target.value)}
-                            className={`w-full rounded-xl pl-9 pr-3 py-2 text-xs font-medium outline-none focus:ring-2 focus:ring-blue-500/20 transition-all ${theme === 'light' ? 'bg-white border border-slate-200 text-slate-700' : 'bg-white/5 border border-white/10 text-white'}`}
+                            className={`w-full rounded-xl pl-4 pr-3 py-2 text-xs font-medium outline-none focus:ring-2 focus:ring-blue-500/20 transition-all ${theme === 'light' ? 'bg-white border border-slate-200 text-slate-700' : 'bg-white/5 border border-white/10 text-white'}`}
                           />
-                          <Menu size={14} className="absolute left-3 top-1/2 -translate-y-1/2 opacity-40" />
+                          {/* <Menu size={14} className="absolute left-3 top-1/2 -translate-y-1/2 opacity-40" /> */}
                         </div>
                         <div className="space-y-2 max-h-48 overflow-y-auto custom-scrollbar pr-2">
                           <label className="flex items-center gap-3 cursor-pointer group">
@@ -859,9 +860,9 @@ export const Dashboard = () => {
                             placeholder="Start typing..." 
                             value={stageSearch}
                             onChange={(e) => setStageSearch(e.target.value)}
-                            className={`w-full rounded-xl pl-9 pr-3 py-2 text-xs font-medium outline-none focus:ring-2 focus:ring-blue-500/20 transition-all ${theme === 'light' ? 'bg-white border border-slate-200 text-slate-700' : 'bg-white/5 border border-white/10 text-white'}`}
+                            className={`w-full rounded-xl pl-4 pr-3 py-2 text-xs font-medium outline-none focus:ring-2 focus:ring-blue-500/20 transition-all ${theme === 'light' ? 'bg-white border border-slate-200 text-slate-700' : 'bg-white/5 border border-white/10 text-white'}`}
                           />
-                          <Menu size={14} className="absolute left-3 top-1/2 -translate-y-1/2 opacity-40" />
+                          {/* <Menu size={14} className="absolute left-3 top-1/2 -translate-y-1/2 opacity-40" /> */}
                         </div>
                         <div className="space-y-2 max-h-48 overflow-y-auto custom-scrollbar pr-2">
                           <label className="flex items-center gap-3 cursor-pointer group">
@@ -1211,28 +1212,35 @@ export const Dashboard = () => {
                         </div>
 
                         <div className="space-y-2 mt-8">
-                          <button 
-                            onClick={() => toggleMyList({ id: scheme.id, title: scheme.title, type: 'scheme' })}
-                            className={`w-full py-2.5 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 ${
-                              myList.find(i => i.id === scheme.id)
-                                ? 'bg-purple-950/60 text-white'
-                                : 'bg-[#4e11b1] text-white hover:bg-[#4e11b1]/80'
-                            }`}
-                          >
-                            <Plus size={16} /> {myList.find(i => i.id === scheme.id) ? 'Remove' : 'My list'}
-                          </button>
+                         <button 
+  onClick={() =>
+    toggleMyList({ id: scheme.id, title: scheme.title, type: 'scheme' })
+  }
+  className={`w-full py-2.5 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 border ${
+    myList.find(i => i.id === scheme.id)
+      ? 'bg-purple-900 text-white border-purple-900'
+      : 'bg-white text-purple-900 border-purple-900 hover:bg-purple-900 hover:text-white'
+  }`}
+>
+  <Plus size={16} />
+  {myList.find(i => i.id === scheme.id) ? 'Remove' : 'My list'}
+</button>
                           <button 
                             onClick={() => setSelectedSchemeId(scheme.id)}
-                            className={`w-full py-2.5 rounded-xl font-bold text-sm transition-all ${theme === 'light' ? 'bg-green-700 text-white hover:bg-green-700/80' : 'bg-green-500/20 text-blue-400 hover:bg-green-500/30'}`}
+                            className={`w-full py-2.5 rounded-xl font-semibold text-sm transition-all ${theme === 'light' ? 'border border-green-700 text-green-700  hover:bg-green-700/80 hover:text-white' : 'bg-green-500/20 hover:bg-green-500/30 hover:text-white'}`}
                           >
-                            Application Details
+                            View Details
                           </button>
                           <button 
-                            onClick={() => handleContactClick(scheme.title, 'Government Scheme')}
-                            className={`w-full py-2.5 rounded-xl font-bold text-sm transition-all ${theme === 'light' ? 'bg-blue-500 text-white hover:bg-blue-500/80' : 'bg-blue-500/20 text-blue-400 hover:bg-pink-500/30'}`}
-                          >
-                            Contact details
-                          </button>
+  onClick={() => handleContactClick(scheme.title, 'Government Scheme')}
+  className={`w-full py-2.5 rounded-xl font-bold text-sm transition-all ${
+    theme === 'light'
+      ? 'border-blue-500 border text-blue-500 hover:text-white  hover:bg-blue-600'
+      : 'border-blue-500/20 text-blue-400 hover:bg-blue-500/30 '
+  }`}
+>
+  Contact details
+</button>
                         </div>
                       </div>
                     </div>
@@ -1507,23 +1515,25 @@ export const Dashboard = () => {
                         <div className="space-y-2 mt-8">
                           <button 
                             onClick={() => toggleMyList({ id: incubator.id, title: incubator.title, type: 'incubator' })}
-                            className={`w-full py-2.5 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 ${
+                            className={`w-full py-2.5 rounded-xl border font-bold text-sm transition-all flex items-center justify-center gap-2 ${
                               myList.find(i => i.id === incubator.id)
-                                ? 'bg-purple-950/60 text-white'
-                                : 'bg-[#4e11b1] text-white hover:bg-[#4e11b1]/80'
+                               ? 'bg-purple-900 text-white border-purple-900'
+      : 'bg-white text-purple-900 border-purple-900 hover:bg-purple-900 hover:text-white'
                             }`}
                           >
                             <Plus size={16} /> {myList.find(i => i.id === incubator.id) ? 'Remove' : 'My list'}
                           </button>
                           <button 
                             onClick={() => setSelectedIncubatorId(incubator.id)}
-                             className={`w-full py-2.5 rounded-xl font-bold text-sm transition-all ${theme === 'light' ? 'bg-green-700 text-white hover:bg-green-700/80' : 'bg-green-500/20 text-blue-400 hover:bg-green-500/30'}`}
+                             className={`w-full py-2.5 rounded-xl font-bold text-sm border transition-all ${theme === 'light' ? 'border-green-700 hover:bg-green-700 text-green-700 hover:text-white hover:bg-green-700/80' : 'bg-green-500/20 text-blue-400 hover:bg-green-500/30'}`}
                           >
-                            Application Details
+                            View Details
                           </button>
+
+                          
                           <button 
                             onClick={() => handleContactClick(incubator.title, 'Incubator')}
-                            className={`w-full py-2.5 rounded-xl font-bold text-sm transition-all ${theme === 'light' ? 'bg-blue-500 text-white hover:bg-blue-500/80' : 'bg-blue-500/20 text-blue-400 hover:bg-pink-500/30'}`}
+                            className={`w-full py-2.5 rounded-xl border font-bold text-sm transition-all ${theme === 'light' ? 'hover:bg-blue-500 hover:text-white border-blue-500 text-blue-500' : 'bg-blue-500/20 text-blue-400 hover:bg-pink-500/30'}`}
                           >
                             Contact details
                           </button>
@@ -1812,7 +1822,7 @@ export const Dashboard = () => {
                       </div>
                       <div>
                         <p className="text-[10px] font-bold uppercase tracking-widest opacity-60 mb-1">Headquarters</p>
-                        <p className="text-sm font-semibold leading-snug">123 Innovation Hub, 4th Floor<br />Tech Park, Bangalore<br />Karnataka, India 560001</p>
+                        <p className="text-sm font-semibold leading-snug">7th floor, Galaxy Avenue, <br />Tonk Road, Jaipur,<br /> 302015</p>
                       </div>
                     </div>
                     
@@ -1822,19 +1832,19 @@ export const Dashboard = () => {
                       </div>
                       <div>
                         <p className="text-[10px] font-bold uppercase tracking-widest opacity-60 mb-1">Direct Support</p>
-                        <p className="text-sm font-semibold">+91 80 1234 5678</p>
-                        <p className="text-[10px] opacity-60 mt-1">Mon-Fri, 9am - 6pm IST</p>
+                        <p className="text-sm font-semibold">1800-571-0809</p>
+                        {/* <p className="text-[10px] opacity-60 mt-1">Mon-Fri, 9am - 6pm IST</p> */}
                       </div>
                     </div>
                     
                     <div className="flex items-start gap-4 group">
                       <div className="bg-white/15 p-3 rounded-2xl group-hover:bg-white/25 transition-colors">
-                        <Lightbulb size={24} />
+                        <MessageSquare size={24} />
                       </div>
                       <div>
                         <p className="text-[10px] font-bold uppercase tracking-widest opacity-60 mb-1">General Inquiries</p>
-                        <p className="text-sm font-semibold">support@getfunding.in</p>
-                        <p className="text-sm font-semibold">info@getfunding.in</p>
+                        {/* <p className="text-sm font-semibold">support@startupflora.in</p> */}
+                        <p className="text-sm font-semibold">info@startupflora.com</p>
                       </div>
                     </div>
                   </div>

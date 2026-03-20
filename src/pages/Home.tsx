@@ -50,8 +50,8 @@ const Hero = () => {
             Our granular filtering system processes 5,000+ government schemes and investment opportunities to find exactly what you qualify for. Stop scrolling, start applying.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 items-center">
-            <Link to="/dashboard" className="bg-linear-to-l from-purple-500  to-green-500 hover:shadow-blue-700 text-white px-8 py-4 rounded-full font-bold text-lg flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-xl">
-              Browse Schemes
+            <Link to="/dashboard" className="bg-linear-to-r from-purple-500  to-green-500 hover:shadow-gray-700 text-white px-8 py-4 rounded-full font-bold text-lg flex items-center justify-center gap-2 transition-all hover:shadow-md">
+              Explore Schemes 
             </Link>
             <div className="flex items-center gap-3">
               <div className="flex -space-x-2">
@@ -395,7 +395,7 @@ const Results = () => {
 
   return (
     <section className="py-24 bg-slate-50/50 relative overflow-hidden bg-purple-500 font-[Cormorant_Garamond]
-             pt-24 pb-16
+             pt-24 pb-10
              sm:pt-28 sm:pb-20
              md:pt-32 md:pb-24
              lg:pt-40 lg:pb-32"
@@ -437,7 +437,7 @@ const Results = () => {
               className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm grid md:grid-cols-4 gap-8 transition-shadow hover:shadow-xl"
            
             >
-              <div className="flex flex-col justify-between">
+              <div className="flex gap-4 md:gap-0  md:justify-between">
                 <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-6">
                   <card.icon size={24} />
                 </div>
@@ -502,14 +502,14 @@ const Results = () => {
                     </div>
                   )}
                 </div>
-                <div className="space-y-2 mt-6">
+                {/* <div className="space-y-2 mt-6">
                   <button className="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-colors">
                     <Zap size={14} /> My list
                   </button>
                   <button className="w-full bg-slate-50 hover:bg-slate-100 text-slate-400 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest transition-colors" onClick={()=>window.open('/dashboard',"_self")}>
                     Application Details
                   </button>
-                </div>
+                </div> */}
               </div>
             </motion.div>
           ))}
@@ -731,17 +731,17 @@ const CTA = () => {
         transition={{ duration: 0.8 }}
         className="max-w-7xl mx-auto px-6 text-center"
       >
-        <h2 className="text-6xl font-bold text-slate-900 mb-8 leading-tight">Ready to fund your dream?</h2>
-        <p className="text-slate-500 text-lg mb-12 max-w-2xl mx-auto">
-          Join thousands of founders who have stopped searching and started building. Get instant access to the engine today.
-        </p>
+        <h2 className=" text-4xl capitalize md:text-6xl font-bold text-slate-900 mb-8 leading-tight">Stop <span className="text-purple-700">Searching</span>. Start getting <span className='text-green-700'>funded</span>.</h2>
+      <p className="text-slate-500 text-lg mb-12 max-w-2xl mx-auto">
+  Discover 140+ verified government schemes, grants, and subsidies — all filtered, simplified, and ready for you to apply.
+</p>
         <motion.div
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
           <Link to="/dashboard" className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-5 rounded-xl font-bold text-xl shadow-xl hover:shadow-2xl transition-all inline-block">
-            Access 140+ gov schemes for free
-          </Link>
+  Explore All Schemes →
+</Link>
         </motion.div>
       </motion.div>
     </section>
