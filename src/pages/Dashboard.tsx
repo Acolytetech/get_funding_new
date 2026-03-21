@@ -13,7 +13,9 @@ import {
   Monitor, 
   Sun,
   X,
-  MessageSquare
+  MessageSquare,
+  Dock,
+  View
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link, useLocation } from 'react-router-dom';
@@ -693,17 +695,29 @@ export const Dashboard = () => {
           <div className="flex-1 flex flex-col relative z-10">
             {/* Hero Section */}
             <div className="px-4 md:px-8 pt-8">
-              <div className={`relative rounded-3xl p-6 md:p-12 overflow-hidden min-h-[320px] flex items-center transition-all duration-500 ${theme === 'light' ? 'bg-[#1a2b4b]' : 'bg-white/5 backdrop-blur-xl border border-white/10'}`}>
+              <div
+  className={`relative rounded-3xl p-12 overflow-hidden min-h-[320px] flex items-center transition-all duration-500 ${
+    theme === "light"
+      ? ""
+      : "bg-white/5 backdrop-blur-xl border border-white/10"
+  }`}
+  style={{
+    background:
+      theme === "light"
+        ? "radial-gradient(66.09% 66.09% at 50.04% 33.91%, #FFFFFF 20.67%, #DFF5F8 65.87%)"
+        : "radial-gradient(60% 60% at 50% 40%, rgba(22,29,131,0.4) 0%, rgba(0,0,0,0.9) 100%)",
+  }}
+>
                 <div className="relative z-10 max-w-2xl">
-                  <h1 className="text-2xl md:text-5xl font-bold text-white mb-6 leading-tight">
-                    All Verified Government Schemes in One Place
+                  <h1 className="text-2xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                    All Verified <span className='text-purple-700'>Government Schemes</span> in One Place
                   </h1>
-                  <p className="text-white/70 text-lg mb-8 max-w-lg">
+                  <p className="text-gray-900/70 text-lg mb-8 max-w-lg">
                     We've analyzed and organized all Indian government schemes that help your business grow financially and get certified.
                   </p>
                   <div className="flex flex-wrap gap-3">
-                    {['DSTO', 'BIRAC', 'DSIR', 'NEWGEN IEDC', 'PARTNER', 'MSME', 'STARTUP INDIA'].map((tag) => (
-                      <span key={tag} className="bg-white/10 backdrop-blur-md text-white px-4 py-1.5 rounded-lg text-[10px] font-bold border border-white/10 tracking-wider">
+                    {['DSTO', 'BIRAC', 'DSIR', 'NEWGEN IEDC', 'MSME', 'STARTUP INDIA'].map((tag) => (
+                      <span key={tag} className="bg-purple-700/60 backdrop-blur-md text-white px-4 py-1.5 rounded-lg text-[14px] font-bold border border-white/10 tracking-wider">
                         {tag}
                       </span>
                     ))}
@@ -1194,16 +1208,16 @@ export const Dashboard = () => {
 
                       {/* Left: Logo & Title */}
                       <div className="w-48 flex-shrink-0">
-                        <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-4 border ${theme === 'light' ? 'bg-slate-50 border-slate-100' : 'bg-white/5 border-white/10'}`}>
-                          <Building2 size={32} className="text-blue-400" />
+                        <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-4 border ${theme === 'light' ? 'bg-green-50 border-slate-100' : 'bg-white/5 border-white/10'}`}>
+                          <Building2 size={32} className="text-green-700/70" />
                         </div>
                         <h3 className={`text-xl font-bold mb-2 leading-tight ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>{scheme.title}</h3>
                         <span className={`inline-block px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider mb-6 ${
-                          scheme.tag === 'CERTIFICATION' ? (theme === 'light' ? 'bg-blue-50 text-blue-700' : 'bg-blue-500/20 text-blue-400') : (theme === 'light' ? 'bg-blue-50 text-blue-700' : 'bg-blue-500/20 text-blue-400')
+                          scheme.tag === 'CERTIFICATION' ? (theme === 'light' ? 'bg-purple-50 text-blue-700' : 'bg-purple-500/20 text-purple-400') : (theme === 'light' ? 'bg-purple-50 text-purple-700' : 'bg-purple-500/20 text-blue-400')
                         }`}>
                           {scheme.tag}
                         </span>
-                        <div className="flex items-center gap-2 opacity-40">
+                        <div className="flex items-center gap-2 opacity-70">
                           <span className="text-lg font-bold">★</span>
                           <span className="text-sm font-medium">--/10</span>
                           <button className="text-[10px] font-bold text-blue-400 hover:underline ml-2">Add review</button>
@@ -1212,15 +1226,23 @@ export const Dashboard = () => {
 
                       {/* Middle: About */}
                       <div className={`flex-1 border-l md:pl-8 ${theme === 'light' ? 'border-slate-100' : 'border-white/10'}`}>
-                        <p className="text-[10px] font-bold opacity-40 uppercase tracking-widest mb-4">About the Scheme</p>
-                        <p className={`text-sm leading-relaxed mb-4 ${theme === 'light' ? 'text-slate-600' : 'text-white/70'}`}>
+                        <p className="text-[12px] font-bold opacity-70 uppercase tracking-widest mb-4">About the Scheme</p>
+                        <p className={`text-base leading-relaxed mb-4 ${theme === 'light' ? 'text-slate-600' : 'text-white/70'}`}>
                           {scheme.about}
                         </p>
                         <div className="flex items-center gap-4">
-                          <button className="text-blue-400 font-bold text-xs hover:underline flex items-center gap-1">
-                            Read Full Analysis <Plus size={12} />
+                          <button className="text-green-600/70 cursor-pointer font-bold text-xs hover:underline flex items-center gap-1" 
+                       onClick={() => {
+  setSelectedSchemeId(scheme.id);
+  document.getElementById("your-container-id")?.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+}}
+                          >
+                            Read More <View size={12} />
                           </button>
-                          <button className="text-blue-400 font-bold text-xs hover:underline">Eligibility Criteria</button>
+                          {/* <button className="text-blue-400 font-bold text-xs hover:underline">Eligibility Criteria</button> */}
                         </div>
                       </div>
 
@@ -1289,14 +1311,33 @@ export const Dashboard = () => {
           <div className="flex-1 flex flex-col relative z-10">
             {/* Hero Section */}
             <div className="px-8 pt-8">
-              <div className={`relative rounded-3xl p-12 overflow-hidden min-h-[320px] flex items-center transition-all duration-500 ${theme === 'light' ? 'bg-[#1a2b4b]' : 'bg-white/5 backdrop-blur-xl border border-white/10'}`}>
+            <div
+  className={`relative rounded-3xl p-6 md:p-12 overflow-hidden min-h-[320px] flex items-center transition-all duration-500 ${
+    theme === "light"
+      ? ""
+      : "bg-white/5 backdrop-blur-xl border border-white/10"
+  }`}
+  style={{
+    background:
+      theme === "light"
+        ? "radial-gradient(66.09% 66.09% at 50.04% 33.91%, #FFFFFF 20.67%, #DFF5F8 35.87%)"
+        : "radial-gradient(60% 60% at 50% 40%, rgba(22,29,131,0.4) 0%, rgba(0,0,0,0.9) 100%)",
+  }}
+>
                 <div className="relative z-10 max-w-2xl">
-                  <h1 className="text-5xl font-bold text-white mb-6 leading-tight">
+                  <h1 className="text-5xl font-bold text-black mb-6 leading-tight">
                     Incubators
                   </h1>
-                  <p className="text-white/70 text-lg mb-8 max-w-lg">
+                  <p className="text-black/60 text-lg mb-8 max-w-lg">
                     Discover incubators that can help grow your venture.
                   </p>
+                   <div className="flex flex-wrap gap-3">
+                    {['T-HUB', 'FITT', 'SID', 'STARTUP OASIS', 'CCAMP', 'MSME', 'STARTUP INDIA'].map((tag) => (
+                      <span key={tag} className="bg-sky-500/30 backdrop-blur-md text-black/70 px-4 py-1.5 rounded-lg text-[14px] font-bold border border-white/10 tracking-wider">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
                 
                 {/* Carousel Navigation */}
@@ -1507,8 +1548,8 @@ export const Dashboard = () => {
                     <div key={idx} className={`border rounded-3xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col md:flex-row gap-8 ${styles.card}`}>
                       {/* Left: Logo & Title */}
                       <div className="w-48 flex-shrink-0">
-                        <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-4 border overflow-hidden ${theme === 'light' ? 'bg-slate-50 border-slate-100' : 'bg-white/5 border-white/10'}`}>
-                          <div className="text-[10px] font-bold opacity-40 text-center px-1">{incubator.logo}</div>
+                        <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-4 border overflow-hidden ${theme === 'light' ? 'bg-purple-100 border-slate-100 text-purple-900' : 'bg-white/5 border-white/10'}`}>
+                          <div className="text-[12px] font-bold text-center px-1">{incubator.logo}</div>
                         </div>
                         <h3 className={`text-xl font-bold mb-2 leading-tight uppercase ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>{incubator.title}</h3>
                         <span className={`inline-block px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider mb-6 ${theme === 'light' ? 'bg-blue-50 text-blue-700' : 'bg-blue-500/20 text-blue-400'}`}>
@@ -1523,8 +1564,8 @@ export const Dashboard = () => {
 
                       {/* Middle: About */}
                       <div className={`flex-1 border-l md:pl-8 ${theme === 'light' ? 'border-slate-100' : 'border-white/10'}`}>
-                        <p className="text-[10px] font-bold opacity-40 uppercase tracking-widest mb-4">About</p>
-                        <p className={`text-sm leading-relaxed mb-4 ${theme === 'light' ? 'text-slate-600' : 'text-white/70'}`}>
+                        <p className="text-[14px] font-bold opacity-40 uppercase tracking-widest mb-4">About</p>
+                        <p className={`text-base leading-relaxed mb-4 ${theme === 'light' ? 'text-slate-600' : 'text-white/70'}`}>
                           {incubator.about} <button className="text-blue-400 font-bold hover:underline">See More</button>
                         </p>
                       </div>
@@ -1578,35 +1619,114 @@ export const Dashboard = () => {
         );
       case 'pricing':
         return (
-          <div className="p-8 max-w-5xl mx-auto relative z-10">
-            <h1 className={`text-4xl font-bold mb-4 ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>Simple, Transparent Pricing</h1>
-            <p className="opacity-50 text-lg mb-12">Choose the plan that's right for your business stage.</p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                { name: 'Free', price: '₹0', features: ['Basic Search', 'Limited Schemes', 'Public Incubators'] },
-                { name: 'Pro', price: '₹999/mo', features: ['Advanced Filters', 'Full Database', 'Contact Details', 'Priority Support'], popular: true },
-                { name: 'Enterprise', price: 'Custom', features: ['API Access', 'Custom Reports', 'Dedicated Manager', 'Unlimited Users'] }
-              ].map((plan) => (
-                <div key={plan.name} className={`p-8 rounded-3xl border transition-all duration-500 relative ${plan.popular ? 'border-blue-500 shadow-xl shadow-blue-500/10' : (theme === 'light' ? 'border-slate-100' : 'border-white/10')} ${styles.card}`}>
-                  {plan.popular && <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-500 text-white px-4 py-1 rounded-full text-xs font-bold">MOST POPULAR</span>}
-                  <h3 className={`text-xl font-bold mb-2 ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>{plan.name}</h3>
-                  <div className={`text-3xl font-bold mb-6 ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>{plan.price}</div>
-                  <ul className="space-y-4 mb-8">
-                    {plan.features.map(f => (
-                      <li key={f} className={`flex items-center gap-2 text-sm opacity-70`}>
-                        <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <button className={`w-full py-3 rounded-xl font-bold transition-all ${plan.popular ? 'bg-blue-500 text-white hover:bg-blue-600' : (theme === 'light' ? 'bg-slate-100 text-slate-900 hover:bg-slate-200' : 'bg-white/10 text-white hover:bg-white/20')}`}>
-                    Get Started
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
+        <div className="p-8 max-w-5xl mx-auto relative z-10">
+  
+  {/* Heading */}
+  <h1 className={`text-4xl font-bold mb-4 ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>
+    Get Expert Guidance for Government Schemes
+  </h1>
+
+  <p className="opacity-70 text-lg mb-12">
+    We help you find the best schemes, check eligibility, and handle documentation — so you don’t miss any opportunity.
+  </p>
+
+  {/* Pricing Cards */}
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    {[
+      {
+        name: "Starter",
+        price: "₹4999",
+        features: [
+          "Basic Scheme Suggestions",
+          "Eligibility Check",
+          "General Guidance",
+        ],
+      },
+      {
+        name: "Professional",
+        price: "₹19,999",
+        popular: true,
+        features: [
+          "Personalized Scheme Recommendation",
+          "Complete Eligibility Analysis",
+          "Documentation Checklist",
+          "Application Guidance",
+          "Priority Support",
+        ],
+      },
+      {
+        name: "Business Pro",
+        price: "Custom",
+        features: [
+          "End-to-End Consultation",
+          "Scheme Application Support",
+          "Government Liaison Help",
+          "Dedicated Expert",
+          "Multiple Scheme Strategy",
+        ],
+      },
+    ].map((plan) => (
+      <div
+        key={plan.name}
+        className={`p-8 rounded-3xl border transition-all duration-500 relative 
+        ${plan.popular 
+          ? "border-blue-500 shadow-xl shadow-blue-500/10" 
+          : theme === "light" 
+          ? "border-slate-100" 
+          : "border-white/10"} 
+        ${styles.card}`}
+      >
+        {/* Popular Tag */}
+        {plan.popular && (
+          <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-500 text-white px-4 py-1 rounded-full text-xs font-bold">
+            MOST POPULAR
+          </span>
+        )}
+
+        {/* Plan Name */}
+        <h3 className={`text-xl font-bold mb-2 ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>
+          {plan.name}
+        </h3>
+
+        {/* Price */}
+        <div className={`text-3xl font-bold mb-6 ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>
+          {plan.price}
+        </div>
+
+        {/* Features */}
+        <ul className="space-y-4 mb-8">
+          {plan.features.map((f) => (
+            <li key={f} className="flex items-center gap-2 text-sm opacity-70">
+              <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+              {f}
+            </li>
+          ))}
+        </ul>
+
+        {/* CTA */}
+        <button
+          className={`w-full py-3 rounded-xl font-bold transition-all ${
+            plan.popular
+              ? "bg-blue-500 text-white hover:bg-blue-600"
+              : theme === "light"
+              ? "bg-slate-100 text-slate-900 hover:bg-slate-200"
+              : "bg-white/10 text-white hover:bg-white/20"
+          }`}
+
+        >
+          
+          Book Consultation
+        </button>
+      </div>
+    ))}
+  </div>
+
+  {/* Trust Line */}
+  <p className="text-center mt-10 opacity-60 text-sm">
+    Trusted by startups, MSMEs & growing businesses across India 🇮🇳
+  </p>
+
+</div>
         );
       case 'angels':
       case 'vcs':

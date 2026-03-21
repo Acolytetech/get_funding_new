@@ -96,7 +96,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="relative"
         >
-          <div className="bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden border border-slate-100  max-w-md ml-auto">
+          <div className="bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden border border-slate-100  w-full lg:max-w-md mx-auto lg:ml-auto">
             <div className="flex items-center justify-between p-4 bg-emerald-600 ">
               <h3 className="text-lg font-bold text-slate-100">Premium Filters</h3>
               <button
