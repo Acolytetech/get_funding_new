@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   Home, 
   Building2, 
@@ -16,13 +16,14 @@ import {
   MessageSquare
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { SCHEMES_DATA, Scheme } from '../data/schemes';
 import { INCUBATORS_DATA } from '../data/incubators';
 
 type Tab = 'home' | 'schemes' | 'incubators' | 'pricing' | 'angels' | 'vcs';
 
 export const Dashboard = () => {
+  const location = useLocation();
 
   const [activeTab, setActiveTab] = useState<Tab>('home');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -110,6 +111,35 @@ export const Dashboard = () => {
   const [showAllInstTypes, setShowAllInstTypes] = useState(false);
   const [showAllStates, setShowAllStates] = useState(false);
   const [showAllLocations, setShowAllLocations] = useState(false);
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const tab = params.get('tab');
+    const search = params.get('search');
+    const type = params.get('type');
+    const industry = params.get('industry');
+    const stage = params.get('stage');
+
+    if (tab === 'schemes' || tab === 'incubators' || tab === 'home' || tab === 'pricing') {
+      setActiveTab(tab);
+    }
+
+    if (search) {
+      setSchemeSearch(search);
+    }
+
+    if (type === 'Central Government' || type === 'State Government') {
+      setSelectedSchemeType(type);
+    }
+
+    if (industry) {
+      setSelectedIndustry(industry);
+    }
+
+    if (stage) {
+      setSelectedStage(stage);
+    }
+  }, [location.search]);
 
   const navItems = [
     { id: 'home', label: 'Home', icon: Home },

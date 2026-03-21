@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { 
   Search,
   ChevronRight, 
@@ -21,6 +21,27 @@ import {
 import { motion } from 'motion/react';
 
 const Hero = () => {
+  const navigate = useNavigate();
+  const [selectedSchemeType, setSelectedSchemeType] = useState<'Central Government' | 'State Government'>('Central Government');
+  const [selectedIndustry, setSelectedIndustry] = useState<'Biotechnology' | 'Science and Technology' | ''>('Biotechnology');
+  const [selectedStage, setSelectedStage] = useState<'Idea stage to POC' | 'Growth Stage'>('Idea stage to POC');
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const goToDashboard = () => {
+    const params = new URLSearchParams({
+      tab: 'schemes',
+      type: selectedSchemeType,
+      industry: selectedIndustry,
+      stage: selectedStage,
+    });
+
+    if (searchTerm.trim()) {
+      params.set('search', searchTerm.trim());
+    }
+
+    navigate(`/dashboard?${params.toString()}`);
+  };
+
   return (
  <section
   className="relative overflow-hidden bg-white font-[Cormorant_Garamond]
@@ -78,21 +99,33 @@ const Hero = () => {
           <div className="bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden border border-slate-100  max-w-md ml-auto">
             <div className="flex items-center justify-between p-4 bg-emerald-600 ">
               <h3 className="text-lg font-bold text-slate-100">Premium Filters</h3>
-              <button className="text-[14px] font-bold text-white uppercase tracking-wider">Clear Filters</button>
+              <button
+                className="text-[14px] font-bold text-white uppercase tracking-wider"
+                onClick={() => {
+                  setSelectedSchemeType('Central Government');
+                  setSelectedIndustry('Biotechnology');
+                  setSelectedStage('Idea stage to POC');
+                  setSearchTerm('');
+                }}
+              >
+                Clear Filters
+              </button>
             </div>
             
             <div className="space-y-6 p-6">
               <div>
                 <p className="text-[14px] font-bold text-slate-400 uppercase tracking-widest mb-3">Scheme Type</p>
                 <div className="space-y-2">
-                  <label className="flex items-center gap-3 cursor-pointer group">
+                  <label className="flex items-center gap-3 cursor-pointer group" onClick={() => setSelectedSchemeType('Central Government')}>
                     <div className="w-4 h-4 rounded-full border-2 border-green-500 flex items-center justify-center p-0.5">
-                      <div className="w-full h-full rounded-full bg-green-500" />
+                      {selectedSchemeType === 'Central Government' && <div className="w-full h-full rounded-full bg-green-500" />}
                     </div>
                     <span className="text-base font-semibold text-slate-700 group-hover:text-slate-900">Central Government</span>
                   </label>
-                  <label className="flex items-center gap-3 cursor-pointer group">
-                    <div className="w-4 h-4 rounded-full border-2 border-slate-200" />
+                  <label className="flex items-center gap-3 cursor-pointer group" onClick={() => setSelectedSchemeType('State Government')}>
+                    <div className={`w-4 h-4 rounded-full border-2 ${selectedSchemeType === 'State Government' ? 'border-green-500 flex items-center justify-center p-0.5' : 'border-slate-200'}`}>
+                      {selectedSchemeType === 'State Government' && <div className="w-full h-full rounded-full bg-green-500" />}
+                    </div>
                     <span className="text-base font-semibold text-slate-500 group-hover:text-slate-700">State Government</span>
                   </label>
                 </div>
@@ -101,15 +134,15 @@ const Hero = () => {
               <div>
                 <p className="text-[14px] font-bold text-slate-400 uppercase tracking-widest mb-3">Industry</p>
                 <div className="space-y-2">
-                  <label className="flex items-center gap-3 cursor-pointer group">
+                  <label className="flex items-center gap-3 cursor-pointer group" onClick={() => setSelectedIndustry('Biotechnology')}>
                     <div className="w-4 h-4 rounded-full border-2 border-green-500 flex items-center justify-center p-0.5">
-                      <div className="w-full h-full rounded-full bg-green-500" />
+                      {selectedIndustry === 'Biotechnology' && <div className="w-full h-full rounded-full bg-green-500" />}
                     </div>
                     <span className="text-sm font-medium text-slate-700 group-hover:text-slate-900">Biotechnology</span>
                   </label>
-                  <label className="flex items-center gap-3 cursor-pointer group">
-                    <div className="w-4 h-4 rounded-full border-2 border-blue-500 flex items-center justify-center p-0.5">
-                      <div className="w-full h-full rounded-full bg-blue-500" />
+                  <label className="flex items-center gap-3 cursor-pointer group" onClick={() => setSelectedIndustry('Science and Technology')}>
+                    <div className={`w-4 h-4 rounded-full border-2 ${selectedIndustry === 'Science and Technology' ? 'border-blue-500 flex items-center justify-center p-0.5' : 'border-slate-200'}`}>
+                      {selectedIndustry === 'Science and Technology' && <div className="w-full h-full rounded-full bg-blue-500" />}
                     </div>
                     <span className="text-sm font-medium text-slate-700 group-hover:text-slate-900">Science and Technology</span>
                   </label>
@@ -127,24 +160,34 @@ const Hero = () => {
                   <input 
                     type="text" 
                     placeholder="Start typing..." 
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        goToDashboard();
+                      }
+                    }}
                     className="w-full bg-slate-50 border border-slate-100 rounded-lg py-2 pl-9 pr-4 text-xs focus:outline-none focus:border-blue-500"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="flex items-center gap-3 cursor-pointer group">
+                  <label className="flex items-center gap-3 cursor-pointer group" onClick={() => setSelectedStage('Idea stage to POC')}>
                     <div className="w-4 h-4 rounded-full border-2 border-green-500 flex items-center justify-center p-0.5">
-                      <div className="w-full h-full rounded-full bg-green-500" />
+                      {selectedStage === 'Idea stage to POC' && <div className="w-full h-full rounded-full bg-green-500" />}
                     </div>
                     <span className="text-sm font-medium text-slate-700 group-hover:text-slate-900">Idea stage to POC</span>
                   </label>
-                  <label className="flex items-center gap-3 cursor-pointer group">
-                    <div className="w-4 h-4 rounded-full border-2 border-slate-200" />
+                  <label className="flex items-center gap-3 cursor-pointer group" onClick={() => setSelectedStage('Growth Stage')}>
+                    <div className={`w-4 h-4 rounded-full border-2 ${selectedStage === 'Growth Stage' ? 'border-green-500 flex items-center justify-center p-0.5' : 'border-slate-200'}`}>
+                      {selectedStage === 'Growth Stage' && <div className="w-full h-full rounded-full bg-green-500" />}
+                    </div>
                     <span className="text-sm font-medium text-slate-500 group-hover:text-slate-700">Growth Stage</span>
                   </label>
                 </div>
               </div>
 
-              <button className="text-[14px] font-bold text-green-500 flex items-center gap-1">
+              <button className="text-[14px] font-bold text-green-500 flex items-center gap-1" onClick={goToDashboard}>
                 Show More <ChevronRight size={12} />
               </button>
             </div>
@@ -455,7 +498,7 @@ const Results = () => {
               <div className="md:col-span-2">
                 <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest mb-3">About</p>
                 <p className="text-xs text-slate-500 leading-relaxed mb-4">
-                  {card.about} <button className="text-blue-600 font-bold">See More</button>
+                  {card.about} <Link to="/dashboard" className="text-blue-600 font-bold">See More</Link>
                 </p>
                 <div className="flex gap-4">
                   <button className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 hover:text-blue-600 transition-colors">
@@ -764,4 +807,3 @@ export const Home = () => {
 </div>
   );
 };
-
