@@ -823,7 +823,7 @@ export const Dashboard = () => {
                       <div>
                         <p className={`text-[10px] font-bold uppercase tracking-widest mb-4 ${theme === 'light' ? 'text-slate-700' : 'text-white/40'}`}>Scheme Type</p>
                         <div className="space-y-3">
-                          {['Central Government', 'CGPS Undertaking', 'State Government'].map((type) => (
+                          {['Central Government', 'State Government','CGPS', ].map((type) => (
                             <label key={type} className="flex items-center gap-3 cursor-pointer group">
                               <input 
                                 type="radio" 
@@ -1212,6 +1212,11 @@ export const Dashboard = () => {
                           <Building2 size={32} className="text-green-700/70" />
                         </div>
                         <h3 className={`text-xl font-bold mb-2 leading-tight ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>{scheme.title}</h3>
+                        <p className={`inline-block px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider mb-2 ${
+                          scheme.tag === 'CERTIFICATION' ? (theme === 'light' ? 'bg-purple-50 text-blue-700' : 'bg-purple-500/20 text-purple-400') : (theme === 'light' ? 'bg-purple-50 text-purple-700' : 'bg-purple-500/20 text-blue-400')
+                        }`}>
+                          {scheme.type}
+                        </p>
                         <span className={`inline-block px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider mb-6 ${
                           scheme.tag === 'CERTIFICATION' ? (theme === 'light' ? 'bg-purple-50 text-blue-700' : 'bg-purple-500/20 text-purple-400') : (theme === 'light' ? 'bg-purple-50 text-purple-700' : 'bg-purple-500/20 text-blue-400')
                         }`}>

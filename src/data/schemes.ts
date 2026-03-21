@@ -1,12 +1,12 @@
 export interface Scheme {
   id: string;
   title: string;
-  tag: "FINANCIAL GROWTH" | "CERTIFICATION";
+  tag: "FINANCIAL GROWTH" | "CERTIFICATION" | "COLLATERAL FREE"|"FAST APPROVAL"|"SOFT LOAN"|"CREDIT SUPPORT"|"NO COLLATERAL"|"BANK LOAN SUPPORT";
   about: string;
   fundType: string;
   investmentSize: string;
   stage: string;
-  type: "Central Government" | "State Government";
+  type: "Central Government" | "State Government" |"CGPS";
   focus: string;
   industry: string;
   reservation: string;
@@ -1773,5 +1773,100 @@ export const SCHEMES_DATA: Scheme[] = [
     state: "All India",
     isCertificate: false
   },
+   {
+    id: "cgtmse",
+    title: "CGTMSE - Credit Guarantee Scheme",
+    tag: "COLLATERAL FREE",
+    about: "Provides collateral-free credit guarantee support to Micro and Small Enterprises, enabling easy access to bank loans without security.",
+    fundType: "Loan Guarantee",
+    investmentSize: "Up to ₹2 Crore",
+    stage: "Startup to Growth Stage",
+    type: "CGPS",
+    focus: "Collateral-Free Loan",
+    industry: "All Industries",
+    reservation: "Women, SC/ST get additional benefits",
+    state: "All India",
+    isCertificate: false,
+  },
+
+  {
+    id: "pmmy-mudra",
+    title: "PMMY - MUDRA Loan",
+    tag: "NO COLLATERAL",
+    about: "Provides collateral-free loans to micro and small businesses under Shishu, Kishor, and Tarun categories.",
+    fundType: "Loan",
+    investmentSize: "Up to ₹10 Lakh",
+    stage: "Idea to Growth Stage",
+    type: "CGPS",
+    focus: "Startup Loan",
+    industry: "All Industries",
+    reservation: "Priority for Women, SC/ST",
+    state: "All India",
+    isCertificate: false,
+  },
+
+  {
+    id: "standup-india",
+    title: "Stand-Up India Scheme",
+    tag: "BANK LOAN SUPPORT",
+    about: "Facilitates bank loans to SC/ST and women entrepreneurs for setting up greenfield enterprises.",
+    fundType: "Loan",
+    investmentSize: "₹10 Lakh – ₹1 Crore",
+    stage: "Startup Stage",
+    type: "CGPS",
+    focus: "Entrepreneur Funding",
+    industry: "Manufacturing, Services, Trading",
+    reservation: "SC/ST & Women",
+    state: "All India",
+    isCertificate: false,
+  },
+
+  {
+    id: "psb-59min",
+    title: "PSB Loans in 59 Minutes",
+    tag: "FAST APPROVAL",
+    about: "Provides quick loan approvals through digital platform with minimal paperwork for MSMEs.",
+    fundType: "Loan",
+    investmentSize: "Up to ₹5 Crore",
+    stage: "Startup to Growth",
+    type: "CGPS",
+    focus: "Quick Loan Access",
+    industry: "All Industries",
+    reservation: "General",
+    state: "All India",
+    isCertificate: false,
+  },
+
+  {
+    id: "sidbi-smile",
+    title: "SIDBI SMILE Scheme",
+    tag: "SOFT LOAN",
+    about: "Provides soft loans to MSMEs for growth, expansion, and modernization with flexible repayment.",
+    fundType: "Soft Loan",
+    investmentSize: "₹10 Lakh – ₹25 Lakh+",
+    stage: "Growth Stage",
+    type: "CGPS",
+    focus: "Business Expansion",
+    industry: "All Industries",
+    reservation: "General",
+    state: "All India",
+    isCertificate: false,
+  },
+
+  {
+    id: "nsic-credit",
+    title: "NSIC Credit Facilitation",
+    tag: "CREDIT SUPPORT",
+    about: "Facilitates MSMEs in accessing bank credit through tie-ups with financial institutions.",
+    fundType: "Loan Assistance",
+    investmentSize: "Varies",
+    stage: "Growth Stage",
+    type: "CGPS",
+    focus: "Credit Support",
+    industry: "All Industries",
+    reservation: "MSME Priority",
+    state: "All India",
+    isCertificate: true,
+  }
   
 ];
