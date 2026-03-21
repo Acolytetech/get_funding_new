@@ -33,6 +33,7 @@ export const Navbar = () => {
   };
 
   const navItems = [
+    { name: 'Explore Schemes', href: '/dashboard' },
     { name: 'How it works', href: '/how-it-works' },
     { name: 'Pricing', href: '/pricing' },
     { name: 'Proof', href: '/success-stories' }
