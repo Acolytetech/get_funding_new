@@ -23,6 +23,7 @@ import { ContactUs } from './pages/ContactUs';
 import { CampaignDetails } from './pages/CampaignDetails';
 import { Dashboard } from './pages/Dashboard';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import ExpertGuidance from './pages/ExpertGuidancePage';
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -76,6 +77,7 @@ export default function App() {
             <Route path="/success-stories" element={<SuccessStories />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/expert-guidance" element={<ExpertGuidance />} />
             <Route path="/start-campaign" element={<StartCampaign />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/campaign/:id" element={<CampaignDetails />} />

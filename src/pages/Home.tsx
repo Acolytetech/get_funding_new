@@ -48,7 +48,7 @@ const Hero = () => {
              pt-24 pb-16
              sm:pt-28 sm:pb-20
              md:pt-32 md:pb-24
-             lg:pt-40 lg:pb-32"
+             "
   style={{
     background:
       "radial-gradient(66.09% 66.09% at 50.04% 33.91%, #FFFFFF 20.67%, #DFF5F8 65.87%)",
@@ -205,7 +205,7 @@ const PainfulResearch = () => {
              pt-14 pb-16
              sm:pt-28 sm:pb-20
              md:pt-32 md:pb-24
-             lg:pt-40 lg:pb-32"
+              "
   style={{
     background:
       "radial-gradient(66.09% 66.09% at 50.04% 33.91%, #FFFFFF 1.67%, #DFF5F8 45.87%)",
@@ -226,187 +226,182 @@ const PainfulResearch = () => {
         </p>
       </motion.div>
 
-      <div className="max-w-5xl mx-auto px-3 md:px-6">
-        <div className="grid lg:grid-cols-5 gap-8 items-stretch">
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-3 bg-slate-50 rounded-3xl p-8 border border-slate-100 relative overflow-hidden"
-          >
-            <div className="flex items-center justify-between mb-8">
-              <div>
-                <h4 className="font-bold text-slate-900">Filtering Logic</h4>
-                <p className="text-[10px] text-slate-400 font-medium">Where founders lose time vs where they win.</p>
-              </div>
-              <div className="bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-full flex items-center gap-1">
-                <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                Live Match
-              </div>
-            </div>
+     <div className="max-w-6xl md:pt-10 md:scale-105 mx-auto px-4 sm:px-6 lg:px-8">
+  <div className="grid lg:grid-cols-5 gap-6 md:gap-8 items-stretch">
 
-            <div className="flex items-center justify-center scale-90 py-10">
-              <div className="relative">
-                <div className="flex gap-4  mb-10">
-                  <motion.div 
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 }}
-                    className="bg-white px-3 py-1.5 rounded-lg shadow-sm border border-slate-100 flex items-center gap-2 text-[10px] font-bold text-blue-600"
-                  >
-                    <div className="w-2 h-2 rounded-full bg-blue-600" /> Biotechnology
-                  </motion.div>
-                  <motion.div 
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 }}
-                    className="bg-white px-3 py-1.5 rounded-lg shadow-sm border border-slate-100 flex items-center gap-2 text-[10px] font-bold text-green-500"
-                  >
-                    <div className="w-2 h-2 rounded-full bg-green-500" /> Idea Stage
-                  </motion.div>
-                  <motion.div 
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4 }}
-                    className="bg-white px-3 py-1.5 rounded-lg shadow-sm border border-slate-100 flex items-center gap-2 text-[10px] font-bold text-purple-500"
-                  >
-                    <div className="w-2 h-2 rounded-full bg-purple-500" /> Karnataka
-                  </motion.div>
-                </div>
-
-                <div className="flex items-center justify-center gap-12">
-                  <div className="text-center">
-                    <p className="text-[10px] font-bold text-green-600 uppercase tracking-widest mb-1">Opportunities</p>
-                    <p className="text-3xl font-bold text-green-600">5,000+</p>
-                  </div>
-                  <div className="relative w-24 h-24">
-                    <div className="absolute inset-0 border-t-[40px] border-t-purple-200 border-x-[48px] border-x-transparent" />
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[8px] font-bold text-purple-400 text-center leading-tight">
-                      IDEAL MATCH
-                    </div>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-[10px] font-bold text-blue-500 uppercase tracking-widest mb-1">Highly Relevant</p>
-                    <motion.p 
-                      initial={{ scale: 0.5, opacity: 0 }}
-                      whileInView={{ scale: 1, opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ type: "spring", stiffness: 100, delay: 0.6 }}
-                      className="text-5xl font-bold text-blue-600"
-                    >
-                      3
-                    </motion.p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-8 flex items-center justify-between">
-              <p className="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Processing Granular Data</p>
-              <p className="text-[10px] font-bold text-blue-600 uppercase tracking-widest">98.2% Accuracy</p>
-            </div>
-            <div className="mt-2 w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
-              <motion.div 
-                initial={{ width: 0 }}
-                whileInView={{ width: "98%" }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
-                className="h-full bg-blue-600" 
-              />
-            </div>
-          </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-2 min-h-[50vh] bg-slate-900 rounded-3xl p-8 text-white relative overflow-hidden"
-          >
-            <h4 className="text-xl font-bold mb-2">The Reality Gap</h4>
-            <p className="text-xs text-slate-400 mb-8">Where founders lose time vs where they win.</p>
-            
-            <div className="space-y-6">
-              <div className="relative">
-                <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest mb-2">Old Way</p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-green-500">
-                    <MousePointer2 size={18} />
-                  </div>
-                  <div className="flex-1">
-                    <div className="h-1.5 bg-white/10 rounded-full w-full mb-1" />
-                    <p className="text-[8px] font-bold text-green-500 uppercase tracking-widest">Endless Searching</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative">
-                <p className="text-[8px] font-bold text-blue-400 uppercase tracking-widest mb-2">GetFunding</p>
-                <div className="space-y-2">
-                  <motion.div 
-                    initial={{ width: 0 }}
-                    whileInView={{ width: "100%" }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, delay: 0.2 }}
-                    className="h-3 bg-blue-500 rounded-full border border-white/20" 
-                  />
-                  <motion.div 
-                    initial={{ width: 0 }}
-                    whileInView={{ width: "80%" }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, delay: 0.4 }}
-                    className="h-3 bg-green-500 rounded-full" 
-                  />
-                  <motion.div 
-                    initial={{ width: 0 }}
-                    whileInView={{ width: "60%" }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, delay: 0.6 }}
-                    className="h-3 bg-purple-500 rounded-full" 
-                  />
-                </div>
-              </div>
-            </div>
-
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 1 }}
-              className="absolute bottom-4 md:bottom-8 left-8 right-8"
-            >
-              <div className="bg-blue-600 py-3 rounded-xl text-center font-bold text-sm">
-                98% FASTER DISCOVERY
-              </div>
-            </motion.div>
-          </motion.div>
+    {/* LEFT SECTION */}
+    <motion.div 
+      initial={{ opacity: 0, x: -30 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      className="lg:col-span-3 bg-slate-50 rounded-3xl p-6 md:p-8 border border-slate-100"
+    >
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <h4 className="text-lg md:text-xl font-semibold text-slate-900">
+            How We Help You Get Funding
+          </h4>
+          <p className="text-sm text-slate-500 mt-1">
+            From idea to approval — complete guidance
+          </p>
         </div>
 
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="grid grid-cols-3 gap-4 md:gap-8 mt-16 border-t border-slate-100 pt-12"
-        >
-          <div className="text-center">
-            <p className="text-3xl md:text-5xl font-bold text-blue-600 mb-2">500+</p>
-            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Research Hours Saved</p>
-          </div>
-          <div className="text-center">
-            <p className="text-3xl md:text-5xl font-bold text-green-500 mb-2">₹12L</p>
-            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Avg. Opportunity Value</p>
-          </div>
-          <div className="text-center">
-            <p className="text-3xl md:text-5xl font-bold text-slate-900 mb-2">12k</p>
-            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Active Founders</p>
-          </div>
-        </motion.div>
+        <div className="bg-green-600 text-white text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+          Live Matching
+        </div>
       </div>
+
+      {/* TAGS */}
+      <div className="flex flex-wrap gap-3 mb-8">
+        {[
+          "Startup Stage Analysis",
+          "Scheme Matching",
+          "Eligibility Check",
+          "Documentation Support"
+        ].map((item, i) => (
+          <motion.div
+            key={i}
+            initial={{ scale: 0.9, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.1 }}
+            className="bg-white px-4 py-2 rounded-lg border text-sm font-medium text-blue-600"
+          >
+            {item}
+          </motion.div>
+        ))}
+      </div>
+
+      {/* RESULT VISUAL */}
+      <div className="flex items-center justify-center gap-10 md:gap-12 py-6">
+
+        <div className="text-center">
+          <p className="text-sm font-medium text-green-600 mb-1">
+            Schemes Available
+          </p>
+          <p className="text-4xl md:text-5xl font-bold text-green-600">
+            100+
+          </p>
+        </div>
+
+        <div className="relative w-24 h-24 flex items-center justify-center">
+          <div className="absolute inset-0 border-t-[40px] border-t-purple-200 border-x-[48px] border-x-transparent" />
+          <span className="text-xs md:text-sm font-semibold text-purple-600 text-center">
+            BEST FIT
+          </span>
+        </div>
+
+        <div className="text-center">
+          <p className="text-sm font-medium text-blue-500 mb-1">
+            Perfect Matches
+          </p>
+          <motion.p 
+            initial={{ scale: 0.5, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-5xl font-bold text-blue-600"
+          >
+            3
+          </motion.p>
+        </div>
+      </div>
+
+      {/* PROGRESS */}
+      <div className="mt-6 flex items-center justify-between text-sm font-medium text-blue-600">
+        <span>Eligibility + Documentation Ready</span>
+        <span>98% Success Mapping</span>
+      </div>
+
+      <div className="mt-2 w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
+        <motion.div 
+          initial={{ width: 0 }}
+          whileInView={{ width: "98%" }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.5 }}
+          className="h-full bg-blue-600" 
+        />
+      </div>
+    </motion.div>
+
+    {/* RIGHT SECTION */}
+    <motion.div 
+      initial={{ opacity: 0, x: 30 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      className="lg:col-span-2 bg-slate-900 rounded-3xl p-6 md:p-8 text-white flex flex-col justify-between"
+    >
+      <div>
+        <h4 className="text-lg md:text-xl font-semibold mb-2">
+          Why Most Startups Fail
+        </h4>
+        <p className="text-sm text-slate-400 mb-6">
+          And how we help you win funding faster
+        </p>
+
+        <div className="space-y-6">
+
+          {/* WITHOUT */}
+          <div>
+            <p className="text-sm font-semibold text-red-400 mb-2">
+              Without Guidance
+            </p>
+            <div className="space-y-2 text-sm text-slate-300">
+              <p>❌ Wrong scheme selection</p>
+              <p>❌ Eligibility confusion</p>
+              <p>❌ Documentation errors</p>
+              <p>❌ High rejection chances</p>
+            </div>
+          </div>
+
+          {/* WITH */}
+          <div>
+            <p className="text-sm font-semibold text-green-400 mb-2">
+              With Our Consultation
+            </p>
+            <div className="space-y-2 text-sm text-white">
+              <p>✔ Best scheme selection</p>
+              <p>✔ Clear eligibility roadmap</p>
+              <p>✔ Proper documentation support</p>
+              <p>✔ Faster approval chances</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* CTA */}
+      <button className="mt-8 bg-green-600 hover:bg-green-700 py-3 rounded-xl font-semibold text-sm transition">
+        Get Expert Guidance →
+      </button>
+    </motion.div>
+  </div>
+
+  {/* STATS */}
+  <motion.div 
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    viewport={{ once: true }}
+    className="grid grid-cols-3 gap-4 md:gap-8 mt-16 border-t border-slate-100 pt-12"
+  >
+    <div className="text-center">
+      <p className="text-4xl md:text-5xl font-bold text-blue-600 mb-2">500+</p>
+      <p className="text-sm text-slate-500">Businesses Guided</p>
+    </div>
+
+    <div className="text-center">
+      <p className="text-4xl md:text-5xl font-bold text-green-500 mb-2">₹12L+</p>
+      <p className="text-sm text-slate-500">Avg Funding Value</p>
+    </div>
+
+    <div className="text-center">
+      <p className="text-4xl md:text-5xl font-bold text-slate-900 mb-2">90%+</p>
+      <p className="text-sm text-slate-500">Success Rate</p>
+    </div>
+  </motion.div>
+</div>
     </section>
   );
 };
@@ -440,8 +435,8 @@ const Results = () => {
     <section className="py-24 bg-slate-50/50 relative overflow-hidden bg-purple-500 font-[Cormorant_Garamond]
              pt-24 pb-10
              sm:pt-28 sm:pb-20
-             md:pt-32 md:pb-24
-             lg:pt-40 lg:pb-32"
+             md:pt-24 md:pb-24
+             "
   style={{
     background:
       "radial-gradient(66.09% 66.09% at 50.04% 33.91%, #FFFFFF 1.67%, #DFF5F8 45.87%)",
@@ -630,8 +625,8 @@ const Community = () => {
      className="relative overflow-hidden bg-purple-500 font-[Cormorant_Garamond]
              pt-24 pb-16
              sm:pt-28 sm:pb-20
-             md:pt-32 md:pb-24
-             lg:pt-40 lg:pb-32"
+             md:pt-24 md:pb-24
+             "
   style={{
     background:
       "radial-gradient(66.09% 66.09% at 50.04% 33.91%, #FFFFFF 1.67%, #DFF5F8 45.87%)",

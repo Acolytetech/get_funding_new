@@ -36,7 +36,8 @@ export const Navbar = () => {
     { name: 'Explore Schemes', href: '/dashboard' },
     { name: 'How it works', href: '/how-it-works' },
     { name: 'Pricing', href: '/pricing' },
-    { name: 'Proof', href: '/success-stories' }
+    { name: 'Proof', href: '/success-stories' },
+    {name:'Expert Guidance' , href:'/Expert-Guidance'},
   ];
 
   return (
@@ -58,7 +59,7 @@ export const Navbar = () => {
               <Link 
                 key={item.name} 
                 to={item.href} 
-                className={`text-base font-medium transition-colors ${location.pathname === item.href ? 'text-blue-600' : 'text-slate-600 hover:text-blue-600'}`}
+                className={`text-base font-medium transition-colors ${location.pathname === item.href ? 'text-purple-600' : 'text-slate-600 hover:text-purple-600'}`}
               >
                 {item.name}
               </Link>
